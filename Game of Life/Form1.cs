@@ -25,9 +25,14 @@ namespace Game_of_Life
         // Generation count
         int generations = 0;
 
+
+
         public Form1()
         {
             InitializeComponent();
+
+            // Color Change Default
+            ColorComboBox.SelectedIndex = 0;
 
             // Setup the timer
             timer.Interval = 100; // milliseconds
@@ -79,7 +84,7 @@ namespace Game_of_Life
                     scratchPad[x, y] = false;
                 }
             }
-            
+
             for (int y = 0; y < universe.GetLength(1); y++)
             {
                 // Iterate through the universe in the x, left to right
@@ -267,8 +272,43 @@ namespace Game_of_Life
         {
             System.Diagnostics.Process.Start("https://linktr.ee/ethanstanks");
         }
-        #endregion
 
+        #endregion
+        
+        private void ColorComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            
+            if (ColorComboBox.Text == "Light Mode")
+            {
+                ColorComboBox.BackColor = Color.White;
+                ColorComboBox.ForeColor = Color.Black;
+                graphicsPanel1.BackColor = Color.White;
+                toolStrip1.BackColor = Color.White;
+                toolStrip1.ForeColor = Color.Black;
+                menuStrip1.BackColor = Color.White;
+                menuStrip1.ForeColor = Color.Black;
+                statusStrip1.BackColor = Color.White;
+                statusStrip1.ForeColor = Color.Black;
+                gridColor = Color.Black;
+                cellColor = Color.Gray;
+                graphicsPanel1.Invalidate();
+            }
+            else if (ColorComboBox.Text == "Dark Mode")
+            {
+                ColorComboBox.BackColor = Color.Black;
+                ColorComboBox.ForeColor = Color.LightSlateGray;
+                graphicsPanel1.BackColor = Color.Black;
+                toolStrip1.BackColor = Color.Black;
+                toolStrip1.ForeColor = Color.LightSlateGray;
+                menuStrip1.BackColor = Color.Black;
+                menuStrip1.ForeColor = Color.LightSlateGray;
+                statusStrip1.BackColor = Color.Black;
+                statusStrip1.ForeColor = Color.LightSlateGray;
+                gridColor = Color.DarkGray;
+                cellColor = Color.LightSlateGray;
+                graphicsPanel1.Invalidate();
+            }
+        }
 
     }
 }
