@@ -13,7 +13,7 @@ namespace Game_of_Life
     public partial class Form1 : Form
     {
         // The universe array
-        bool[,] universe = new bool[5, 5];
+        bool[,] universe = new bool[20, 20];
 
         // Drawing colors
         Color gridColor = Color.Black;
@@ -34,6 +34,36 @@ namespace Game_of_Life
             timer.Tick += Timer_Tick;
             timer.Enabled = false; // start timer running
         }
+        private int CountNeighborFinite(int x, int y)
+        {
+            int count = 0;
+            int xLen = universe.GetLength(0);
+            int yLen = universe.GetLength(1);
+            for (int yOffset = -1; yOffset <= 1; yOffset++)
+            {
+                for (int xOffset = -1; xOffset <= 1; xOffset++)
+                {
+                    int xCheck = x + xOffset;
+                    int yCheck = y + yOffset;
+                    // if xOffset and yOffset are both equal to 0 then continue
+                    // if xCheck is less than 0 then continue
+                    // if yCheck is less than 0 then continue
+                    // if xCheck is greater than or equal too xLen then continue
+                    // if yCheck is greater than or equal too yLen then continue
+
+
+                    if (universe[xCheck, yCheck] == true) count++;
+                    else if (xOffset == 0 && yOffset == 0) continue;
+                    else if (xCheck < 0) continue;
+                    else if (yCheck < 0) continue;
+                    else if (xCheck >= xLen) continue;
+                    else if (yCheck >= yLen) continue;
+                    else continue;
+
+                }
+            }
+            return count;
+        }
 
         // Calculate the next generation of cells
         private void NextGeneration()
@@ -43,10 +73,10 @@ namespace Game_of_Life
                 // Iterate through the universe in the x, left to right
                 for (int x = 0; x < universe.GetLength(0); x++)
                 {
-                    // int count = CountNeighbor sending the x and y
-
+                    int count = CountNeighborFinite(x, y);
 
                     // Apply the 4 rules to see if the cell dies or lives in the next gen
+
 
 
                     // Turn it on/off in the scratchPad
@@ -120,6 +150,7 @@ namespace Game_of_Life
             cellBrush.Dispose();
         }
 
+        #region Mouse Click Functions
         private void graphicsPanel1_MouseClick(object sender, MouseEventArgs e)
         {
             // If the left mouse button was clicked
@@ -205,5 +236,8 @@ namespace Game_of_Life
         {
             System.Diagnostics.Process.Start("https://linktr.ee/ethanstanks");
         }
+        #endregion
+
+
     }
 }
