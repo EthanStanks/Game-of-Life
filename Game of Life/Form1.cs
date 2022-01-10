@@ -13,7 +13,7 @@ namespace Game_of_Life
     public partial class Form1 : Form
     {
         // The universe array
-        bool[,] universe = new bool[20, 20];
+        bool[,] universe = new bool[30, 30];
 
         // Drawing colors
         Color gridColor = Color.Black;
@@ -52,14 +52,14 @@ namespace Game_of_Life
                     // if yCheck is greater than or equal too yLen then continue
 
 
-                    if (universe[xCheck, yCheck] == true) count++;
-                    else if (xOffset == 0 && yOffset == 0) continue;
+
+                    if (xOffset == 0 && yOffset == 0) continue;
                     else if (xCheck < 0) continue;
                     else if (yCheck < 0) continue;
                     else if (xCheck >= xLen) continue;
                     else if (yCheck >= yLen) continue;
-                    else continue;
 
+                    if (universe[xCheck, yCheck] == true) count++;
                 }
             }
             return count;
@@ -68,26 +68,55 @@ namespace Game_of_Life
         // Calculate the next generation of cells
         private void NextGeneration()
         {
+            int uniX = universe.GetLength(0);
+            int uniY = universe.GetLength(1);
+            bool[,] scratchPad = new bool[uniX, uniY];
+            for (int y = 0; y < scratchPad.GetLength(1); y++)
+            {
+                // Iterate through the universe in the x, left to right
+                for (int x = 0; x < scratchPad.GetLength(0); x++)
+                {
+                    scratchPad[x, y] = false;
+                }
+            }
+            
             for (int y = 0; y < universe.GetLength(1); y++)
             {
                 // Iterate through the universe in the x, left to right
                 for (int x = 0; x < universe.GetLength(0); x++)
                 {
                     int count = CountNeighborFinite(x, y);
-
+                    bool cellLives = false;
                     // Apply the 4 rules to see if the cell dies or lives in the next gen
+                    if (universe[x, y] == true) // if cell is alive
+                    {
+                        if (count < 2) // rule 1
+                            cellLives = false; // cell dies
+                        else if (count > 3) // rule 2
+                            cellLives = false; // cell dies
+                        else if (count == 2 || count == 3) // rule 3
+                            cellLives = true; // cell lives
+                        else cellLives = false;
 
-
+                    }
+                    else // if cell is dead
+                    {
+                        if (count == 3) // rule 4
+                            cellLives = true; // cell lives
+                        else cellLives = false;
+                    }
 
                     // Turn it on/off in the scratchPad
-
+                    if (cellLives == true)
+                        scratchPad[x, y] = true;
+                    else scratchPad[x, y] = false;
                 }
             }
 
             // Copy from scratchPad to universe
-            // bool[,] temp = universe;
-            // universe = scratchPad;
-            // scratchPad = temp;
+            bool[,] temp = universe;
+            universe = scratchPad;
+            scratchPad = temp;
 
             // Increment generation count
             generations++;
@@ -206,6 +235,7 @@ namespace Game_of_Life
 
         private void newToolStripButton_Click(object sender, EventArgs e) // new button on tool bar
         {
+            generations = 0;
             for (int y = 0; y < universe.GetLength(1); y++)
             {
                 // Iterate through the universe in the x, left to right
@@ -220,6 +250,7 @@ namespace Game_of_Life
 
         private void newToolStripMenuItem_Click(object sender, EventArgs e) // new from menu
         {
+            generations = 0;
             for (int y = 0; y < universe.GetLength(1); y++)
             {
                 // Iterate through the universe in the x, left to right
