@@ -241,6 +241,7 @@ namespace Game_of_Life
         private void newToolStripButton_Click(object sender, EventArgs e) // new button on tool bar
         {
             generations = 0;
+            toolStripStatusLabelGenerations.Text = "Generations = 0";
             for (int y = 0; y < universe.GetLength(1); y++)
             {
                 // Iterate through the universe in the x, left to right
@@ -256,6 +257,7 @@ namespace Game_of_Life
         private void newToolStripMenuItem_Click(object sender, EventArgs e) // new from menu
         {
             generations = 0;
+            toolStripStatusLabelGenerations.Text = "Generations = 0";
             for (int y = 0; y < universe.GetLength(1); y++)
             {
                 // Iterate through the universe in the x, left to right
@@ -274,7 +276,6 @@ namespace Game_of_Life
         }
 
         #endregion
-        
         private void ColorComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             
@@ -308,7 +309,8 @@ namespace Game_of_Life
                 cellColor = Color.LightSlateGray;
                 graphicsPanel1.Invalidate();
             }
-        }
+        } // Color Mode Combo Box
+        
 
     }
 }
