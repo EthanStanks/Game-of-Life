@@ -28,6 +28,9 @@ namespace Game_of_Life
         // Neighbor Bool - True if finite - False if Toroidal
         bool isFinite = true;
 
+        // Random Number
+        Random rng = new Random();
+
 
         public Form1()
         {
@@ -315,6 +318,36 @@ namespace Game_of_Life
         {
             System.Diagnostics.Process.Start("https://linktr.ee/ethanstanks");
         }
+        private void randomUniTimeToolStripMenuItem_Click(object sender, EventArgs e) // Random Time Click Event
+        {
+            // resets generation
+            generations = 0;
+            toolStripStatusLabelGenerations.Text = "Generations = 0";
+
+            //Clears the Universe
+            for (int y = 0; y < universe.GetLength(1); y++)
+            {
+                // Iterate through the universe in the x, left to right
+                for (int x = 0; x < universe.GetLength(0); x++)
+                {
+                    universe[x, y] = false;
+                }
+            }
+
+            // Makes Randoms Cells Alive in the Universe
+            for (int y = 0; y < universe.GetLength(1); y++)
+            {
+                // Iterate through the universe in the x, left to right
+                for (int x = 0; x < universe.GetLength(0); x++)
+                {
+                    if (rng.Next(1, 4) == 1) // if rng is 1 make cell alive
+                        universe[x, y] = true;
+                    else universe[x, y] = false;
+                }
+            }
+
+            graphicsPanel1.Invalidate();
+        }
 
         #endregion
         private void ColorComboBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -368,5 +401,6 @@ namespace Game_of_Life
                 isFinite = false;
             }
         }
+
     }
 }
