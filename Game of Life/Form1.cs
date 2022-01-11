@@ -13,7 +13,7 @@ namespace Game_of_Life
     public partial class Form1 : Form
     {
         // The universe array
-        bool[,] universe = new bool[30, 30];
+        bool[,] universe = new bool[100, 100];
 
         // Drawing colors
         Color gridColor = Color.Black;
