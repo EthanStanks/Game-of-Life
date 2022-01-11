@@ -13,7 +13,7 @@ namespace Game_of_Life
     public partial class Form1 : Form
     {
         // The universe array
-        bool[,] universe = new bool[100, 100];
+        bool[,] universe = new bool[80, 80];
 
         // Drawing colors
         Color gridColor = Color.Black;
@@ -25,14 +25,19 @@ namespace Game_of_Life
         // Generation count
         int generations = 0;
 
+        // Neighbor Bool - True if finite - False if Toroidal
+        bool isFinite = true;
 
 
         public Form1()
         {
             InitializeComponent();
 
-            // Color Change Default
+            // Color Change ComboBox Default
             ColorComboBox.SelectedIndex = 0;
+
+            // CountNeighbors ComboBox Default
+            CountNeighborsComboBox.SelectedIndex = 0;
 
             // Setup the timer
             timer.Interval = 100; // milliseconds
@@ -69,7 +74,37 @@ namespace Game_of_Life
             }
             return count;
         }
+        private int CountNeighborsToroidal(int x, int y)
+        {
+            int count = 0;
+            int xLen = universe.GetLength(0);
+            int yLen = universe.GetLength(1);
+            for (int yOffset = -1; yOffset <= 1; yOffset++)
+            {
+                for (int xOffset = -1; xOffset <= 1; xOffset++)
+                {
+                    int xCheck = x + xOffset;
+                    int yCheck = y + yOffset;
+                    // if xOffset and yOffset are both equal to 0 then continue
+                    // if xCheck is less than 0 then set to xLen - 1
+                    // if yCheck is less than 0 then set to yLen - 1
+                    // if xCheck is greater than or equal too xLen then set to 0
+                    // if yCheck is greater than or equal too yLen then set to 0
+                    if (xOffset == 0 & yOffset == 0) continue;
 
+                    if (xCheck < 0) xCheck = xLen - 1;
+
+                    if (yCheck < 0) yCheck = yLen - 1;
+
+                    if (xCheck >= xLen) xCheck = 0;
+
+                    if (yCheck >= yLen) yCheck = 0;
+
+                    if (universe[xCheck, yCheck] == true) count++;
+                }
+            }
+            return count;
+        }
         // Calculate the next generation of cells
         private void NextGeneration()
         {
@@ -90,7 +125,13 @@ namespace Game_of_Life
                 // Iterate through the universe in the x, left to right
                 for (int x = 0; x < universe.GetLength(0); x++)
                 {
-                    int count = CountNeighborFinite(x, y);
+                    int count = 0;
+
+                    if (isFinite == true)
+                        count = CountNeighborFinite(x, y);
+                    else if (isFinite == false)
+                        count = CountNeighborsToroidal(x, y);
+
                     bool cellLives = false;
                     // Apply the 4 rules to see if the cell dies or lives in the next gen
                     if (universe[x, y] == true) // if cell is alive
@@ -278,11 +319,13 @@ namespace Game_of_Life
         #endregion
         private void ColorComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
+
             if (ColorComboBox.Text == "Light Mode")
             {
                 ColorComboBox.BackColor = Color.White;
                 ColorComboBox.ForeColor = Color.Black;
+                CountNeighborsComboBox.BackColor = Color.White;
+                CountNeighborsComboBox.ForeColor = Color.Black;
                 graphicsPanel1.BackColor = Color.White;
                 toolStrip1.BackColor = Color.White;
                 toolStrip1.ForeColor = Color.Black;
@@ -298,6 +341,8 @@ namespace Game_of_Life
             {
                 ColorComboBox.BackColor = Color.Black;
                 ColorComboBox.ForeColor = Color.LightSlateGray;
+                CountNeighborsComboBox.BackColor = Color.Black;
+                CountNeighborsComboBox.ForeColor = Color.LightSlateGray;
                 graphicsPanel1.BackColor = Color.Black;
                 toolStrip1.BackColor = Color.Black;
                 toolStrip1.ForeColor = Color.LightSlateGray;
@@ -310,7 +355,18 @@ namespace Game_of_Life
                 graphicsPanel1.Invalidate();
             }
         } // Color Mode Combo Box
-        
 
+        private void CountNeighborsComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+            if (CountNeighborsComboBox.Text == "Finite")
+            {
+                isFinite = true;
+            }
+            else if (CountNeighborsComboBox.Text == "Toroidal")
+            {
+                isFinite = false;
+            }
+        }
     }
 }

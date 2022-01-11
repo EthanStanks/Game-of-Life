@@ -56,6 +56,7 @@ namespace Game_of_Life
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabelGenerations = new System.Windows.Forms.ToolStripStatusLabel();
             this.graphicsPanel1 = new Game_of_Life.GraphicsPanel();
+            this.CountNeighborsComboBox = new System.Windows.Forms.ToolStripComboBox();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -66,7 +67,8 @@ namespace Game_of_Life
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
             this.toolsToolStripMenuItem,
-            this.ColorComboBox});
+            this.ColorComboBox,
+            this.CountNeighborsComboBox});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1484, 27);
@@ -299,6 +301,17 @@ namespace Game_of_Life
             this.graphicsPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.graphicsPanel1_Paint);
             this.graphicsPanel1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.graphicsPanel1_MouseClick);
             // 
+            // CountNeighborsComboBox
+            // 
+            this.CountNeighborsComboBox.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.CountNeighborsComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.CountNeighborsComboBox.Items.AddRange(new object[] {
+            "Finite",
+            "Toroidal"});
+            this.CountNeighborsComboBox.Name = "CountNeighborsComboBox";
+            this.CountNeighborsComboBox.Size = new System.Drawing.Size(121, 23);
+            this.CountNeighborsComboBox.SelectedIndexChanged += new System.EventHandler(this.CountNeighborsComboBox_SelectedIndexChanged);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -352,6 +365,7 @@ namespace Game_of_Life
         private System.Windows.Forms.ToolStripButton toolStripButton3;
         private System.Windows.Forms.ToolStripButton toolStripButton4;
         private System.Windows.Forms.ToolStripComboBox ColorComboBox;
+        private System.Windows.Forms.ToolStripComboBox CountNeighborsComboBox;
     }
 }
 
