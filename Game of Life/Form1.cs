@@ -13,7 +13,7 @@ namespace Game_of_Life
     public partial class Form1 : Form
     {
         // The universe array
-        bool[,] universe = new bool[80, 80];
+        bool[,] universe = new bool[30, 30];
 
         // Drawing colors
         Color gridColor = Color.Black;
@@ -349,7 +349,8 @@ namespace Game_of_Life
             graphicsPanel1.Invalidate();
         }
 
-        #endregion
+        #endregion // Region of Click Functions
+
         private void ColorComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
 
@@ -400,7 +401,7 @@ namespace Game_of_Life
             {
                 isFinite = false;
             }
-        }
+        } // Count Neighbors Combo Box
 
     }
 }
