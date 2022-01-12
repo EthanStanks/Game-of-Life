@@ -42,6 +42,9 @@ namespace Game_of_Life
         // Current Amount of Living Cells
         int aliveCount = 0;
 
+        // Time Variable
+        int miliTime = 100;
+
 
         public Form1()
         {
@@ -54,7 +57,7 @@ namespace Game_of_Life
             CountNeighborsComboBox.SelectedIndex = 0;
 
             // Setup the timer
-            timer.Interval = 100; // milliseconds
+            timer.Interval = miliTime; // milliseconds
             timer.Tick += Timer_Tick;
             timer.Enabled = false; // start timer running
         }
@@ -366,7 +369,7 @@ namespace Game_of_Life
             graphicsPanel1.Invalidate();
         }
 
-        private void toolStripButton4_Click(object sender, EventArgs e)
+        private void toolStripButton4_Click(object sender, EventArgs e) // button that takes the user to my link tree
         {
             System.Diagnostics.Process.Start("https://linktr.ee/ethanstanks");
         }
@@ -399,6 +402,21 @@ namespace Game_of_Life
             }
 
             graphicsPanel1.Invalidate();
+        }
+        private void changeSizeToolStripMenuItem_Click(object sender, EventArgs e) // change size of universe
+        {
+            DialogForm uniSize = new DialogForm();
+            uniSize.ShowDialog();
+            if (uniSize.FormCommit == true)
+            {
+                int x = uniSize.DialogX;
+                int y = uniSize.DialogY;
+                bool[,] newUni = new bool[x, y];
+                bool[,] temp = universe;
+                universe = newUni;
+                newUni = temp;
+                graphicsPanel1.Invalidate();
+            }
         }
         private void hideGridToolStripMenuItem_Click(object sender, EventArgs e) // Hide/Show Grid under View tab
         {
@@ -561,20 +579,9 @@ namespace Game_of_Life
 
         } // Hide Neighbor Count
 
-        private void changeSizeToolStripMenuItem_Click(object sender, EventArgs e) // change size of universe
+        private void generationSpeedToolStripMenuItem_Click(object sender, EventArgs e) // Change generation time click
         {
-            DialogForm uniSize = new DialogForm();
-            uniSize.ShowDialog();
-            if (uniSize.FormCommit == true)
-            {
-                int x = uniSize.DialogX;
-                int y = uniSize.DialogY;
-                bool[,] newUni = new bool[x, y];
-                bool[,] temp = universe;
-                universe = newUni;
-                newUni = temp;
-                graphicsPanel1.Invalidate();
-            }
+
         }
     }
 }

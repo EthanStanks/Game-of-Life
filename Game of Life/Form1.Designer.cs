@@ -239,8 +239,9 @@ namespace Game_of_Life
             // generationSpeedToolStripMenuItem
             // 
             this.generationSpeedToolStripMenuItem.Name = "generationSpeedToolStripMenuItem";
-            this.generationSpeedToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
+            this.generationSpeedToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.generationSpeedToolStripMenuItem.Text = "Generation Speed";
+            this.generationSpeedToolStripMenuItem.Click += new System.EventHandler(this.generationSpeedToolStripMenuItem_Click);
             // 
             // ColorComboBox
             // 
