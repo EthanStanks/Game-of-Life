@@ -31,6 +31,9 @@ namespace Game_of_Life
         // Random Number
         Random rng = new Random();
 
+        // Show / Hide Grid Bool - True if show - False if hide
+        bool showGrid = true;
+
 
         public Form1()
         {
@@ -219,7 +222,8 @@ namespace Game_of_Life
                     }
 
                     // Outline the cell with a pen
-                    e.Graphics.DrawRectangle(gridPen, cellRect.X, cellRect.Y, cellRect.Width, cellRect.Height);
+                    if (showGrid == true) e.Graphics.DrawRectangle(gridPen, cellRect.X, cellRect.Y, cellRect.Width, cellRect.Height);
+                    
                 }
             }
 
@@ -348,6 +352,21 @@ namespace Game_of_Life
 
             graphicsPanel1.Invalidate();
         }
+        private void hideGridToolStripMenuItem_Click(object sender, EventArgs e) // Hide/Show Grid under View tab
+        {
+            // hiding the grid
+            if (hideGridToolStripMenuItem.Text == "Hide Grid")
+            {
+                hideGridToolStripMenuItem.Text = "Show Grid";
+                showGrid = false;
+            }
+            else // showing the gride
+            {
+                hideGridToolStripMenuItem.Text = "Hide Grid";
+                showGrid = true;
+            }
+            graphicsPanel1.Invalidate();
+        }
 
         #endregion // Region of Click Functions
 
@@ -356,43 +375,117 @@ namespace Game_of_Life
 
             if (ColorComboBox.Text == "Light Mode")
             {
-                ColorComboBox.BackColor = Color.White;
-                ColorComboBox.ForeColor = Color.Black;
-                CountNeighborsComboBox.BackColor = Color.White;
-                CountNeighborsComboBox.ForeColor = Color.Black;
-                graphicsPanel1.BackColor = Color.White;
-                toolStrip1.BackColor = Color.White;
-                toolStrip1.ForeColor = Color.Black;
-                menuStrip1.BackColor = Color.White;
-                menuStrip1.ForeColor = Color.Black;
-                statusStrip1.BackColor = Color.White;
-                statusStrip1.ForeColor = Color.Black;
-                gridColor = Color.Black;
-                cellColor = Color.Gray;
+                ColorComboBox.BackColor = Color.White; // Color Changer Combo Box Background
+                ColorComboBox.ForeColor = Color.Black; // Color Changer Combo Box Text
+                CountNeighborsComboBox.BackColor = Color.White; // Count Neighbor Combo Box Background
+                CountNeighborsComboBox.ForeColor = Color.Black; // Count Neighbor Combo Box Text
+                toolStrip1.BackColor = Color.White; // Tool Strip Background
+                toolStrip1.ForeColor = Color.Black; // Tool Strip Text
+                menuStrip1.BackColor = Color.White; // Menu Strip Background
+                menuStrip1.ForeColor = Color.Black; // Menu Strip Text
+                statusStrip1.BackColor = Color.White; // Status Strip Background
+                statusStrip1.ForeColor = Color.Black; // Status Strip Text
+
+                graphicsPanel1.BackColor = Color.White; // Dead Cells
+                gridColor = Color.Black; // Grid Lines
+                cellColor = Color.Gray; // Dead Cells
                 graphicsPanel1.Invalidate();
             }
             else if (ColorComboBox.Text == "Dark Mode")
             {
-                ColorComboBox.BackColor = Color.Black;
-                ColorComboBox.ForeColor = Color.LightSlateGray;
-                CountNeighborsComboBox.BackColor = Color.Black;
-                CountNeighborsComboBox.ForeColor = Color.LightSlateGray;
-                graphicsPanel1.BackColor = Color.Black;
-                toolStrip1.BackColor = Color.Black;
-                toolStrip1.ForeColor = Color.LightSlateGray;
-                menuStrip1.BackColor = Color.Black;
-                menuStrip1.ForeColor = Color.LightSlateGray;
-                statusStrip1.BackColor = Color.Black;
-                statusStrip1.ForeColor = Color.LightSlateGray;
-                gridColor = Color.DarkGray;
-                cellColor = Color.LightSlateGray;
+                ColorComboBox.BackColor = Color.Black; // Color Changer Combo Box Background
+                ColorComboBox.ForeColor = Color.LightSlateGray; // Color Changer Combo Box Text
+                CountNeighborsComboBox.BackColor = Color.Black; // Count Neighbor Combo Box Background
+                CountNeighborsComboBox.ForeColor = Color.LightSlateGray; // Count Neighbor Combo Box Text
+                toolStrip1.BackColor = Color.Black; // Tool Strip Background
+                toolStrip1.ForeColor = Color.LightSlateGray; // Tool Strip Text
+                menuStrip1.BackColor = Color.Black; // Menu Strip Background
+                menuStrip1.ForeColor = Color.LightSlateGray; // Menu Strip Text
+                statusStrip1.BackColor = Color.Black; // Status Strip Background
+                statusStrip1.ForeColor = Color.LightSlateGray; // Status Strip Text
+
+                graphicsPanel1.BackColor = Color.Black; // Dead Cells
+                gridColor = Color.DarkGray; // Grid Lines
+                cellColor = Color.LightSlateGray; // Alive Cells
+                graphicsPanel1.Invalidate();
+            }
+            else if (ColorComboBox.Text == "Bee Mode")
+            {
+                ColorComboBox.BackColor = Color.LightGoldenrodYellow; // Color Changer Combo Box Background
+                ColorComboBox.ForeColor = Color.Black; // Color Changer Combo Box Text
+                CountNeighborsComboBox.BackColor = Color.LightGoldenrodYellow; // Count Neighbor Combo Box Background
+                CountNeighborsComboBox.ForeColor = Color.Black; // Count Neighbor Combo Box Text
+                toolStrip1.BackColor = Color.Goldenrod; // Tool Strip Background
+                toolStrip1.ForeColor = Color.Black; // Tool Strip Text
+                menuStrip1.BackColor = Color.LightGoldenrodYellow; // Menu Strip Background
+                menuStrip1.ForeColor = Color.Black; // Menu Strip Text
+                statusStrip1.BackColor = Color.LightGoldenrodYellow; // Status Strip Background
+                statusStrip1.ForeColor = Color.Black; // Status Strip Text
+
+                graphicsPanel1.BackColor = Color.DarkGoldenrod; // Dead Cells
+                gridColor = Color.Black; // Grid Lines
+                cellColor = Color.Black; // Alive Cells
+                graphicsPanel1.Invalidate();
+            }
+            else if (ColorComboBox.Text == "Turtle Mode")
+            {
+                ColorComboBox.BackColor = Color.DarkSeaGreen; // Color Changer Combo Box Background
+                ColorComboBox.ForeColor = Color.Black; // Color Changer Combo Box Text
+                CountNeighborsComboBox.BackColor = Color.DarkSeaGreen; // Count Neighbor Combo Box Background
+                CountNeighborsComboBox.ForeColor = Color.Black; // Count Neighbor Combo Box Text
+                toolStrip1.BackColor = Color.OliveDrab; // Tool Strip Background
+                toolStrip1.ForeColor = Color.Black; // Tool Strip Text
+                menuStrip1.BackColor = Color.DarkSeaGreen; // Menu Strip Background
+                menuStrip1.ForeColor = Color.Black; // Menu Strip Text
+                statusStrip1.BackColor = Color.DarkSeaGreen; // Status Strip Background
+                statusStrip1.ForeColor = Color.Black; // Status Strip Text
+
+                graphicsPanel1.BackColor = Color.DarkOliveGreen; // Dead Cells
+                gridColor = Color.Ivory; // Grid Lines
+                cellColor = Color.BurlyWood; // Alive Cells
+                graphicsPanel1.Invalidate();
+            }
+            else if (ColorComboBox.Text == "Mr.Mime Mode")
+            {
+                ColorComboBox.BackColor = Color.Thistle; // Color Changer Combo Box Background
+                ColorComboBox.ForeColor = Color.BlueViolet; // Color Changer Combo Box Text 
+                CountNeighborsComboBox.BackColor = Color.Thistle; // Count Neighbor Combo Box Background
+                CountNeighborsComboBox.ForeColor = Color.BlueViolet; // Count Neighbor Combo Box Text
+                toolStrip1.BackColor = Color.MediumOrchid; // Tool Strip Background
+                toolStrip1.ForeColor = Color.BlueViolet; // Tool Strip Text
+                menuStrip1.BackColor = Color.Thistle; // Menu Strip Background
+                menuStrip1.ForeColor = Color.BlueViolet; // Menu Strip Text
+                statusStrip1.BackColor = Color.Thistle; // Status Strip Background
+                statusStrip1.ForeColor = Color.BlueViolet; // Status Strip Text
+
+                graphicsPanel1.BackColor = Color.DarkSlateBlue; // Dead Cells
+                gridColor = Color.DarkOrchid; // Grid Lines
+                cellColor = Color.Plum; // Alive Cells
+                graphicsPanel1.Invalidate();
+            }
+            else if (ColorComboBox.Text == "Strawberry Mode")
+            {
+                ColorComboBox.BackColor = Color.DarkRed; // Color Changer Combo Box Background
+                ColorComboBox.ForeColor = Color.White; // Color Changer Combo Box Text 
+                CountNeighborsComboBox.BackColor = Color.DarkRed; // Count Neighbor Combo Box Background
+                CountNeighborsComboBox.ForeColor = Color.White; // Count Neighbor Combo Box Text
+                toolStrip1.BackColor = Color.PaleGreen; // Tool Strip Background
+                toolStrip1.ForeColor = Color.Black; // Tool Strip Text
+                menuStrip1.BackColor = Color.DarkRed; // Menu Strip Background
+                menuStrip1.ForeColor = Color.White; // Menu Strip Text
+                statusStrip1.BackColor = Color.PaleGreen; // Status Strip Background
+                statusStrip1.ForeColor = Color.Black; // Status Strip Text
+
+                graphicsPanel1.BackColor = Color.LightCoral; // Dead Cells
+                gridColor = Color.PaleGreen; // Grid Lines
+                cellColor = Color.DarkRed; // Alive Cells
                 graphicsPanel1.Invalidate();
             }
         } // Color Mode Combo Box
 
         private void CountNeighborsComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            // if the combo box selection is changed to Finite or Toroidal
             if (CountNeighborsComboBox.Text == "Finite")
             {
                 isFinite = true;
