@@ -37,6 +37,9 @@ namespace Game_of_Life
         // Show/Hide Count Neighbor Bool - True if show - False if hide
         bool showCount = true;
 
+        // Current Amount of Living Cells
+        int aliveCount = 0;
+
 
         public Form1()
         {
@@ -131,6 +134,7 @@ namespace Game_of_Life
         // Calculate the next generation of cells
         private void NextGeneration()
         {
+            aliveCount = 0;  // resetting the alive cell status to 0
             int uniX = universe.GetLength(0);
             int uniY = universe.GetLength(1);
             bool[,] scratchPad = new bool[uniX, uniY];
@@ -172,7 +176,10 @@ namespace Game_of_Life
 
                     // Turn it on/off in the scratchPad
                     if (cellLives == true)
+                    {
                         scratchPad[x, y] = true;
+                        aliveCount++; // updates the status count of Alive Cells
+                    }
                     else scratchPad[x, y] = false;
                 }
             }
@@ -187,6 +194,9 @@ namespace Game_of_Life
 
             // Update status strip generations
             toolStripStatusLabelGenerations.Text = "Generations = " + generations.ToString();
+
+            // Update status strip Living Cells
+            livingCellStripStatusLabel1.Text = "Cells Alive = " + aliveCount.ToString();
 
             graphicsPanel1.Invalidate();
         }
@@ -324,6 +334,8 @@ namespace Game_of_Life
         {
             generations = 0;
             toolStripStatusLabelGenerations.Text = "Generations = 0";
+            aliveCount = 0;
+            livingCellStripStatusLabel1.Text = "Cells Alive = 0";
             for (int y = 0; y < universe.GetLength(1); y++)
             {
                 // Iterate through the universe in the x, left to right

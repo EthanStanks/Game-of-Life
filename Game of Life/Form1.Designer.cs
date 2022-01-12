@@ -65,6 +65,7 @@ namespace Game_of_Life
             this.toolStripButton4 = new System.Windows.Forms.ToolStripButton();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabelGenerations = new System.Windows.Forms.ToolStripStatusLabel();
+            this.livingCellStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.graphicsPanel1 = new Game_of_Life.GraphicsPanel();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -369,7 +370,8 @@ namespace Game_of_Life
             // statusStrip1
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripStatusLabelGenerations});
+            this.toolStripStatusLabelGenerations,
+            this.livingCellStripStatusLabel1});
             this.statusStrip1.Location = new System.Drawing.Point(0, 939);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(1484, 22);
@@ -381,6 +383,12 @@ namespace Game_of_Life
             this.toolStripStatusLabelGenerations.Name = "toolStripStatusLabelGenerations";
             this.toolStripStatusLabelGenerations.Size = new System.Drawing.Size(90, 17);
             this.toolStripStatusLabelGenerations.Text = "Generations = 0";
+            // 
+            // livingCellStripStatusLabel1
+            // 
+            this.livingCellStripStatusLabel1.Name = "livingCellStripStatusLabel1";
+            this.livingCellStripStatusLabel1.Size = new System.Drawing.Size(81, 17);
+            this.livingCellStripStatusLabel1.Text = "Cells Alive = 0";
             // 
             // graphicsPanel1
             // 
@@ -456,6 +464,7 @@ namespace Game_of_Life
         private System.Windows.Forms.ToolStripMenuItem hideGridToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem hideNeighborCountToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem hideHeadsUpDisplayToolStripMenuItem;
+        private System.Windows.Forms.ToolStripStatusLabel livingCellStripStatusLabel1;
     }
 }
 
