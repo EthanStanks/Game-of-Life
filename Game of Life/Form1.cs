@@ -31,8 +31,11 @@ namespace Game_of_Life
         // Random Number
         Random rng = new Random();
 
-        // Show / Hide Grid Bool - True if show - False if hide
+        // Show/Hide Grid Bool - True if show - False if hide
         bool showGrid = true;
+
+        // Show/Hide Count Neighbor Bool - True if show - False if hide
+        bool showCount = true;
 
 
         public Form1()
@@ -111,6 +114,69 @@ namespace Game_of_Life
             }
             return count;
         }
+
+        private void DrawNeighborCount(int x, int y, int count, float w, float h, RectangleF rect, PaintEventArgs e, bool uni)
+        {
+            Font font = new Font("Arial", 10f);
+
+            StringFormat stringFormat = new StringFormat();
+            stringFormat.Alignment = StringAlignment.Center;
+            stringFormat.LineAlignment = StringAlignment.Center;
+            if (ColorComboBox.Text == "Light Mode")
+            {
+                if (uni == true) e.Graphics.DrawString(count.ToString(), font, Brushes.Black, rect, stringFormat);
+                else
+                    if (count > 0) e.Graphics.DrawString(count.ToString(), font, Brushes.Black, rect, stringFormat);
+            }
+            else if (ColorComboBox.Text == "Dark Mode")
+            {
+                if (uni == true) e.Graphics.DrawString(count.ToString(), font, Brushes.DarkGray, rect, stringFormat);
+                else
+                    if (count > 0) e.Graphics.DrawString(count.ToString(), font, Brushes.DarkGray, rect, stringFormat);
+            }
+            else if (ColorComboBox.Text == "Bee Mode")
+            {
+                if (uni == true) e.Graphics.DrawString(count.ToString(), font, Brushes.LightGoldenrodYellow, rect, stringFormat);
+                else
+                    if (count > 0) e.Graphics.DrawString(count.ToString(), font, Brushes.LightGoldenrodYellow, rect, stringFormat);
+            }
+            else if (ColorComboBox.Text == "Turtle Mode")
+            {
+                if (uni == true) e.Graphics.DrawString(count.ToString(), font, Brushes.Black, rect, stringFormat);
+                else
+                    if (count > 0) e.Graphics.DrawString(count.ToString(), font, Brushes.Black, rect, stringFormat);
+            }
+            else if (ColorComboBox.Text == "Mr.Mime Mode")
+            {
+                if (uni == true) e.Graphics.DrawString(count.ToString(), font, Brushes.MediumOrchid, rect, stringFormat);
+                else
+                    if (count > 0) e.Graphics.DrawString(count.ToString(), font, Brushes.MediumOrchid, rect, stringFormat);
+            }
+            else if (ColorComboBox.Text == "Strawberry Mode")
+            {
+                if (uni == true) e.Graphics.DrawString(count.ToString(), font, Brushes.PaleGreen, rect, stringFormat);
+                else
+                    if (count > 0) e.Graphics.DrawString(count.ToString(), font, Brushes.PaleGreen, rect, stringFormat);
+            }
+            else
+            {
+                if (uni == true) e.Graphics.DrawString(count.ToString(), font, Brushes.Black, rect, stringFormat);
+                else
+                    if (count > 0) e.Graphics.DrawString(count.ToString(), font, Brushes.Black, rect, stringFormat);
+            }
+        }
+
+        // gets the count for either Finite or Toroidal
+        private int GetCount(int x, int y)
+        {
+            int count = 0;
+            if (isFinite == true)
+                count = CountNeighborFinite(x, y);
+            else if (isFinite == false)
+                count = CountNeighborsToroidal(x, y);
+            return count;
+        }
+
         // Calculate the next generation of cells
         private void NextGeneration()
         {
@@ -131,12 +197,7 @@ namespace Game_of_Life
                 // Iterate through the universe in the x, left to right
                 for (int x = 0; x < universe.GetLength(0); x++)
                 {
-                    int count = 0;
-
-                    if (isFinite == true)
-                        count = CountNeighborFinite(x, y);
-                    else if (isFinite == false)
-                        count = CountNeighborsToroidal(x, y);
+                    int count = GetCount(x, y);
 
                     bool cellLives = false;
                     // Apply the 4 rules to see if the cell dies or lives in the next gen
@@ -221,9 +282,16 @@ namespace Game_of_Life
                         e.Graphics.FillRectangle(cellBrush, cellRect);
                     }
 
+                    // Show Neighbor Count if True
+                    if (showCount == true)
+                    {
+                        int count = GetCount(x, y);
+                        DrawNeighborCount(x, y, count, cellWidth, cellHeight, cellRect, e, universe[x, y]);
+                    }
+
                     // Outline the cell with a pen
                     if (showGrid == true) e.Graphics.DrawRectangle(gridPen, cellRect.X, cellRect.Y, cellRect.Width, cellRect.Height);
-                    
+
                 }
             }
 
@@ -496,5 +564,21 @@ namespace Game_of_Life
             }
         } // Count Neighbors Combo Box
 
+        private void hideNeighborCountToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // hiding the neighbor count
+            if (hideNeighborCountToolStripMenuItem.Text == "Hide Neighbor Count")
+            {
+                hideNeighborCountToolStripMenuItem.Text = "Show Neighbor Count";
+                showCount = false;
+            }
+            else // showing neighbor count
+            {
+                hideNeighborCountToolStripMenuItem.Text = "Hide Neighbor Count";
+                showCount = true;
+            }
+            graphicsPanel1.Invalidate();
+
+        }
     }
 }

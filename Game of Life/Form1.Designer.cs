@@ -196,6 +196,7 @@ namespace Game_of_Life
             this.hideNeighborCountToolStripMenuItem.Name = "hideNeighborCountToolStripMenuItem";
             this.hideNeighborCountToolStripMenuItem.Size = new System.Drawing.Size(194, 22);
             this.hideNeighborCountToolStripMenuItem.Text = "Hide Neighbor Count";
+            this.hideNeighborCountToolStripMenuItem.Click += new System.EventHandler(this.hideNeighborCountToolStripMenuItem_Click);
             // 
             // hideHeadsUpDisplayToolStripMenuItem
             // 
