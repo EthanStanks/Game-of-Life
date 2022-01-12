@@ -115,56 +115,7 @@ namespace Game_of_Life
             return count;
         }
 
-        private void DrawNeighborCount(int x, int y, int count, float w, float h, RectangleF rect, PaintEventArgs e, bool uni)
-        {
-            Font font = new Font("Arial", 10f);
-
-            StringFormat stringFormat = new StringFormat();
-            stringFormat.Alignment = StringAlignment.Center;
-            stringFormat.LineAlignment = StringAlignment.Center;
-            if (ColorComboBox.Text == "Light Mode")
-            {
-                if (uni == true) e.Graphics.DrawString(count.ToString(), font, Brushes.Black, rect, stringFormat);
-                else
-                    if (count > 0) e.Graphics.DrawString(count.ToString(), font, Brushes.Black, rect, stringFormat);
-            }
-            else if (ColorComboBox.Text == "Dark Mode")
-            {
-                if (uni == true) e.Graphics.DrawString(count.ToString(), font, Brushes.DarkGray, rect, stringFormat);
-                else
-                    if (count > 0) e.Graphics.DrawString(count.ToString(), font, Brushes.DarkGray, rect, stringFormat);
-            }
-            else if (ColorComboBox.Text == "Bee Mode")
-            {
-                if (uni == true) e.Graphics.DrawString(count.ToString(), font, Brushes.LightGoldenrodYellow, rect, stringFormat);
-                else
-                    if (count > 0) e.Graphics.DrawString(count.ToString(), font, Brushes.LightGoldenrodYellow, rect, stringFormat);
-            }
-            else if (ColorComboBox.Text == "Turtle Mode")
-            {
-                if (uni == true) e.Graphics.DrawString(count.ToString(), font, Brushes.Black, rect, stringFormat);
-                else
-                    if (count > 0) e.Graphics.DrawString(count.ToString(), font, Brushes.Black, rect, stringFormat);
-            }
-            else if (ColorComboBox.Text == "Mr.Mime Mode")
-            {
-                if (uni == true) e.Graphics.DrawString(count.ToString(), font, Brushes.MediumOrchid, rect, stringFormat);
-                else
-                    if (count > 0) e.Graphics.DrawString(count.ToString(), font, Brushes.MediumOrchid, rect, stringFormat);
-            }
-            else if (ColorComboBox.Text == "Strawberry Mode")
-            {
-                if (uni == true) e.Graphics.DrawString(count.ToString(), font, Brushes.PaleGreen, rect, stringFormat);
-                else
-                    if (count > 0) e.Graphics.DrawString(count.ToString(), font, Brushes.PaleGreen, rect, stringFormat);
-            }
-            else
-            {
-                if (uni == true) e.Graphics.DrawString(count.ToString(), font, Brushes.Black, rect, stringFormat);
-                else
-                    if (count > 0) e.Graphics.DrawString(count.ToString(), font, Brushes.Black, rect, stringFormat);
-            }
-        }
+        
 
         // gets the count for either Finite or Toroidal
         private int GetCount(int x, int y)
@@ -285,8 +236,23 @@ namespace Game_of_Life
                     // Show Neighbor Count if True
                     if (showCount == true)
                     {
-                        int count = GetCount(x, y);
-                        DrawNeighborCount(x, y, count, cellWidth, cellHeight, cellRect, e, universe[x, y]);
+                        int count = GetCount(x, y); // gets the cells 
+
+                        Font font = new Font("Arial", 10f);
+                        StringFormat stringFormat = new StringFormat();
+                        stringFormat.Alignment = StringAlignment.Center;
+                        stringFormat.LineAlignment = StringAlignment.Center;
+                        if (ColorComboBox.Text == "Light Mode" || ColorComboBox.Text == "Turtle Mode")
+                        {
+                            if (universe[x, y] == true) e.Graphics.DrawString(count.ToString(), font, Brushes.Black, cellRect, stringFormat);
+                            else if (count > 0) e.Graphics.DrawString(count.ToString(), font, Brushes.Black, cellRect, stringFormat);
+                        }
+                        else
+                        {
+                            if (universe[x, y] == true) e.Graphics.DrawString(count.ToString(), font, Brushes.White, cellRect, stringFormat);
+                            else if (count > 0) e.Graphics.DrawString(count.ToString(), font, Brushes.White, cellRect, stringFormat);
+                        }
+                       
                     }
 
                     // Outline the cell with a pen
