@@ -232,8 +232,9 @@ namespace Game_of_Life
             // changeSizeToolStripMenuItem
             // 
             this.changeSizeToolStripMenuItem.Name = "changeSizeToolStripMenuItem";
-            this.changeSizeToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
+            this.changeSizeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.changeSizeToolStripMenuItem.Text = "Change Size";
+            this.changeSizeToolStripMenuItem.Click += new System.EventHandler(this.changeSizeToolStripMenuItem_Click);
             // 
             // generationSpeedToolStripMenuItem
             // 

@@ -12,6 +12,8 @@ namespace Game_of_Life
 {
     public partial class Form1 : Form
     {
+
+
         // The universe array
         bool[,] universe = new bool[30, 30];
 
@@ -118,7 +120,7 @@ namespace Game_of_Life
             return count;
         }
 
-        
+
 
         // gets the count for either Finite or Toroidal
         private int GetCount(int x, int y)
@@ -262,7 +264,7 @@ namespace Game_of_Life
                             if (universe[x, y] == true) e.Graphics.DrawString(count.ToString(), font, Brushes.White, cellRect, stringFormat);
                             else if (count > 0) e.Graphics.DrawString(count.ToString(), font, Brushes.White, cellRect, stringFormat);
                         }
-                       
+
                     }
 
                     // Outline the cell with a pen
@@ -557,6 +559,22 @@ namespace Game_of_Life
             }
             graphicsPanel1.Invalidate();
 
+        } // Hide Neighbor Count
+
+        private void changeSizeToolStripMenuItem_Click(object sender, EventArgs e) // change size of universe
+        {
+            DialogForm uniSize = new DialogForm();
+            uniSize.ShowDialog();
+            if (uniSize.FormCommit == true)
+            {
+                int x = uniSize.DialogX;
+                int y = uniSize.DialogY;
+                bool[,] newUni = new bool[x, y];
+                bool[,] temp = universe;
+                universe = newUni;
+                newUni = temp;
+                graphicsPanel1.Invalidate();
+            }
         }
     }
 }
