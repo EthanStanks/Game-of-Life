@@ -145,7 +145,7 @@ namespace Game_of_Life
             bool[,] scratchPad = new bool[uniX, uniY];
             for (int y = 0; y < scratchPad.GetLength(1); y++)
             {
-                // Iterate through the universe in the x, left to right
+                // Iterate through the scratchPad in the x, left to right to set everything to dead
                 for (int x = 0; x < scratchPad.GetLength(0); x++)
                 {
                     scratchPad[x, y] = false;

@@ -29,6 +29,7 @@ namespace Game_of_Life
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -67,9 +68,13 @@ namespace Game_of_Life
             this.toolStripStatusLabelGenerations = new System.Windows.Forms.ToolStripStatusLabel();
             this.livingCellStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.graphicsPanel1 = new Game_of_Life.GraphicsPanel();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.clickEvent1ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.clickEvent2ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
+            this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -232,14 +237,14 @@ namespace Game_of_Life
             // changeSizeToolStripMenuItem
             // 
             this.changeSizeToolStripMenuItem.Name = "changeSizeToolStripMenuItem";
-            this.changeSizeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.changeSizeToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
             this.changeSizeToolStripMenuItem.Text = "Change Size";
             this.changeSizeToolStripMenuItem.Click += new System.EventHandler(this.changeSizeToolStripMenuItem_Click);
             // 
             // generationSpeedToolStripMenuItem
             // 
             this.generationSpeedToolStripMenuItem.Name = "generationSpeedToolStripMenuItem";
-            this.generationSpeedToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.generationSpeedToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
             this.generationSpeedToolStripMenuItem.Text = "Generation Speed";
             this.generationSpeedToolStripMenuItem.Click += new System.EventHandler(this.generationSpeedToolStripMenuItem_Click);
             // 
@@ -395,6 +400,7 @@ namespace Game_of_Life
             // graphicsPanel1
             // 
             this.graphicsPanel1.BackColor = System.Drawing.SystemColors.Window;
+            this.graphicsPanel1.ContextMenuStrip = this.contextMenuStrip1;
             this.graphicsPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.graphicsPanel1.Location = new System.Drawing.Point(0, 52);
             this.graphicsPanel1.Name = "graphicsPanel1";
@@ -402,6 +408,26 @@ namespace Game_of_Life
             this.graphicsPanel1.TabIndex = 3;
             this.graphicsPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.graphicsPanel1_Paint);
             this.graphicsPanel1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.graphicsPanel1_MouseClick);
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.clickEvent1ToolStripMenuItem,
+            this.clickEvent2ToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(142, 48);
+            // 
+            // clickEvent1ToolStripMenuItem
+            // 
+            this.clickEvent1ToolStripMenuItem.Name = "clickEvent1ToolStripMenuItem";
+            this.clickEvent1ToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
+            this.clickEvent1ToolStripMenuItem.Text = "Click Event 1";
+            // 
+            // clickEvent2ToolStripMenuItem
+            // 
+            this.clickEvent2ToolStripMenuItem.Name = "clickEvent2ToolStripMenuItem";
+            this.clickEvent2ToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
+            this.clickEvent2ToolStripMenuItem.Text = "Click Event 2";
             // 
             // Form1
             // 
@@ -423,6 +449,7 @@ namespace Game_of_Life
             this.toolStrip1.PerformLayout();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
+            this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -467,6 +494,9 @@ namespace Game_of_Life
         private System.Windows.Forms.ToolStripMenuItem hideNeighborCountToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem hideHeadsUpDisplayToolStripMenuItem;
         private System.Windows.Forms.ToolStripStatusLabel livingCellStripStatusLabel1;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem clickEvent1ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem clickEvent2ToolStripMenuItem;
     }
 }
 
