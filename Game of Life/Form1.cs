@@ -30,7 +30,7 @@ namespace Game_of_Life
         // Neighbor Bool - True if finite - False if Toroidal
         bool isFinite = true;
 
-        
+
 
         // Show/Hide Grid Bool - True if show - False if hide
         bool showGrid = true;
@@ -65,6 +65,8 @@ namespace Game_of_Life
             timer.Tick += Timer_Tick;
             timer.Enabled = false; // start timer running
         }
+
+        #region Random Methods
         private void RandomSeed(Int32 seed) // Random.Next with a seed
         {
             // Random Number with Seed
@@ -88,7 +90,7 @@ namespace Game_of_Life
                 // Iterate through the universe in the x, left to right
                 for (int x = 0; x < universe.GetLength(0); x++)
                 {
-                    if (objRng.Next(1,4) == 1) // if objRng.Next is 1 make cell alive
+                    if (objRng.Next(1, 4) == 1) // if objRng.Next is 1 make cell alive
                         universe[x, y] = true;
                     else universe[x, y] = false;
                 }
@@ -96,6 +98,8 @@ namespace Game_of_Life
 
             graphicsPanel1.Invalidate();
         }
+        #endregion
+
         private void ClearUniverse()
         {
             generations = 0; // resets generation count to 0
@@ -114,6 +118,7 @@ namespace Game_of_Life
             graphicsPanel1.Invalidate();
         }
 
+        #region Count Methods
         private int CountNeighborFinite(int x, int y)
         {
             int count = 0;
@@ -176,8 +181,6 @@ namespace Game_of_Life
             return count;
         }
 
-
-
         // gets the count for either Finite or Toroidal
         private int GetCount(int x, int y)
         {
@@ -188,6 +191,7 @@ namespace Game_of_Life
                 count = CountNeighborsToroidal(x, y);
             return count;
         }
+        #endregion
 
         // Calculate the next generation of cells
         private void NextGeneration()
@@ -263,7 +267,7 @@ namespace Game_of_Life
         private void Timer_Tick(object sender, EventArgs e)
         {
             NextGeneration();
-        }
+        } // everytime the timer ticks
 
         private void graphicsPanel1_Paint(object sender, PaintEventArgs e)
         {
@@ -335,7 +339,7 @@ namespace Game_of_Life
         }
 
         #region Mouse Click Functions
-        private void graphicsPanel1_MouseClick(object sender, MouseEventArgs e)
+        private void graphicsPanel1_MouseClick(object sender, MouseEventArgs e) // if user clicks on a cell
         {
             // If the left mouse button was clicked
             if (e.Button == MouseButtons.Left)
@@ -435,6 +439,15 @@ namespace Game_of_Life
                 showGrid = true;
             }
             graphicsPanel1.Invalidate();
+        }
+        private void raToolStripMenuItem_Click(object sender, EventArgs e) // Generate new universe with a seed
+        {
+            RandomSeedForm dlg = new RandomSeedForm(); // Making an instance of the RandomSeedForm
+            if (DialogResult.OK == dlg.ShowDialog()) // If dlg.ShowDialog returns with OK
+            {
+                seed = dlg.GetNumber(); // gets the seed that the user enters
+                RandomSeed(seed); // calls the RandomSeed method passing the seed
+            }
         }
 
         #endregion // Region of Click Functions
@@ -587,14 +600,5 @@ namespace Game_of_Life
 
         }
 
-        private void raToolStripMenuItem_Click(object sender, EventArgs e) // Generate new universe with a seed
-        {
-            RandomSeedForm dlg = new RandomSeedForm(); // Making an instance of the RandomSeedForm
-            if (DialogResult.OK == dlg.ShowDialog()) // If dlg.ShowDialog returns with OK
-            {
-                seed = dlg.GetNumber(); // gets the seed that the user enters
-                RandomSeed(seed); // calls the RandomSeed method passing the seed
-            }
-        }
     }
 }
