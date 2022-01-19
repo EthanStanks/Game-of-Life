@@ -16,5 +16,14 @@ namespace Game_of_Life
         {
             InitializeComponent();
         }
+
+        public int GetNumber()
+        {
+            return (Int32)numericUpDownSeed.Value;
+        }
+
+        private void buttonGenerate_Click(object sender, EventArgs e)
+        {
+        }
     }
 }

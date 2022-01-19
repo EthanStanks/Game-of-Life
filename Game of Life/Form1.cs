@@ -30,8 +30,7 @@ namespace Game_of_Life
         // Neighbor Bool - True if finite - False if Toroidal
         bool isFinite = true;
 
-        // Random Number
-        Random rng = new Random();
+        
 
         // Show/Hide Grid Bool - True if show - False if hide
         bool showGrid = true;
@@ -44,6 +43,11 @@ namespace Game_of_Life
 
         // Time Variable
         int miliTime = 100;
+
+        // Seed Variable
+        Int32 seed = 0;
+
+
 
 
         public Form1()
@@ -61,6 +65,55 @@ namespace Game_of_Life
             timer.Tick += Timer_Tick;
             timer.Enabled = false; // start timer running
         }
+        private void RandomSeed(Int32 seed) // Random.Next with a seed
+        {
+            // Random Number with Seed
+            Random rngS = new Random(seed); // instance of Random with a passed seed
+            RandomNext(rngS); // calls the random universe method with the Random Seed instance
+
+        }
+        private void RandomTime()
+        {
+            // Random Number with Time
+            Random rngT = new Random(); // instance of Random with time
+            RandomNext(rngT); // calls the random universe method with time rng instance
+        }
+        private void RandomNext(Random objRng)
+        {
+            ClearUniverse(); // Clears the Universe and resets the status bar
+
+            // Makes Randoms Cells Alive in the Universe
+            for (int y = 0; y < universe.GetLength(1); y++)
+            {
+                // Iterate through the universe in the x, left to right
+                for (int x = 0; x < universe.GetLength(0); x++)
+                {
+                    if (objRng.Next(1,4) == 1) // if objRng.Next is 1 make cell alive
+                        universe[x, y] = true;
+                    else universe[x, y] = false;
+                }
+            }
+
+            graphicsPanel1.Invalidate();
+        }
+        private void ClearUniverse()
+        {
+            generations = 0; // resets generation count to 0
+            toolStripStatusLabelGenerations.Text = "Generations = 0"; // resets the generation status bar
+            aliveCount = 0; // resets alive count to 0
+            livingCellStripStatusLabel1.Text = "Cells Alive = 0"; // resets the alive count status bar
+            for (int y = 0; y < universe.GetLength(1); y++)
+            {
+                // Iterate through the universe in the x, left to right
+                for (int x = 0; x < universe.GetLength(0); x++)
+                {
+                    universe[x, y] = false; // sets the current cell to dead
+                }
+            }
+
+            graphicsPanel1.Invalidate();
+        }
+
         private int CountNeighborFinite(int x, int y)
         {
             int count = 0;
@@ -337,36 +390,12 @@ namespace Game_of_Life
 
         private void newToolStripButton_Click(object sender, EventArgs e) // new button on tool bar
         {
-            generations = 0;
-            toolStripStatusLabelGenerations.Text = "Generations = 0";
-            aliveCount = 0;
-            livingCellStripStatusLabel1.Text = "Cells Alive = 0";
-            for (int y = 0; y < universe.GetLength(1); y++)
-            {
-                // Iterate through the universe in the x, left to right
-                for (int x = 0; x < universe.GetLength(0); x++)
-                {
-                    universe[x, y] = false;
-                }
-            }
-
-            graphicsPanel1.Invalidate();
+            ClearUniverse(); // Clears the Universe and Resets Status Bar
         }
 
         private void newToolStripMenuItem_Click(object sender, EventArgs e) // new from menu
         {
-            generations = 0;
-            toolStripStatusLabelGenerations.Text = "Generations = 0";
-            for (int y = 0; y < universe.GetLength(1); y++)
-            {
-                // Iterate through the universe in the x, left to right
-                for (int x = 0; x < universe.GetLength(0); x++)
-                {
-                    universe[x, y] = false;
-                }
-            }
-
-            graphicsPanel1.Invalidate();
+            ClearUniverse(); // Clears the Universe and Resets Status Bar
         }
 
         private void toolStripButton4_Click(object sender, EventArgs e) // button that takes the user to my link tree
@@ -375,33 +404,7 @@ namespace Game_of_Life
         }
         private void randomUniTimeToolStripMenuItem_Click(object sender, EventArgs e) // Random Time Click Event
         {
-            // resets generation
-            generations = 0;
-            toolStripStatusLabelGenerations.Text = "Generations = 0";
-
-            //Clears the Universe
-            for (int y = 0; y < universe.GetLength(1); y++)
-            {
-                // Iterate through the universe in the x, left to right
-                for (int x = 0; x < universe.GetLength(0); x++)
-                {
-                    universe[x, y] = false;
-                }
-            }
-
-            // Makes Randoms Cells Alive in the Universe
-            for (int y = 0; y < universe.GetLength(1); y++)
-            {
-                // Iterate through the universe in the x, left to right
-                for (int x = 0; x < universe.GetLength(0); x++)
-                {
-                    if (rng.Next(1, 4) == 1) // if rng is 1 make cell alive
-                        universe[x, y] = true;
-                    else universe[x, y] = false;
-                }
-            }
-
-            graphicsPanel1.Invalidate();
+            RandomTime(); // calls the Random Time method
         }
         private void changeSizeToolStripMenuItem_Click(object sender, EventArgs e) // change size of universe
         {
@@ -589,7 +592,8 @@ namespace Game_of_Life
             RandomSeedForm dlg = new RandomSeedForm(); // Making an instance of the RandomSeedForm
             if (DialogResult.OK == dlg.ShowDialog()) // If dlg.ShowDialog returns with OK
             {
-
+                seed = dlg.GetNumber(); // gets the seed that the user enters
+                RandomSeed(seed); // calls the RandomSeed method passing the seed
             }
         }
     }
