@@ -231,8 +231,9 @@ namespace Game_of_Life
             // raToolStripMenuItem
             // 
             this.raToolStripMenuItem.Name = "raToolStripMenuItem";
-            this.raToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
+            this.raToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.raToolStripMenuItem.Text = "Random Uni (Seed)";
+            this.raToolStripMenuItem.Click += new System.EventHandler(this.raToolStripMenuItem_Click);
             // 
             // changeSizeToolStripMenuItem
             // 

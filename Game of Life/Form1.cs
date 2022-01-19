@@ -583,5 +583,14 @@ namespace Game_of_Life
         {
 
         }
+
+        private void raToolStripMenuItem_Click(object sender, EventArgs e) // Generate new universe with a seed
+        {
+            RandomSeedForm dlg = new RandomSeedForm(); // Making an instance of the RandomSeedForm
+            if (DialogResult.OK == dlg.ShowDialog()) // If dlg.ShowDialog returns with OK
+            {
+
+            }
+        }
     }
 }
