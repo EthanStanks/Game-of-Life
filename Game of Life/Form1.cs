@@ -410,7 +410,7 @@ namespace Game_of_Life
         }
         private void changeSizeToolStripMenuItem_Click(object sender, EventArgs e) // change size of universe
         {
-            DialogForm uniSize = new DialogForm(); // creates the instance of DialogForm
+            UniSizeForm uniSize = new UniSizeForm(); // creates the instance of DialogForm
             uniSize.X = universe.GetLength(0); // sets the DialogForm x to the x of universe
             uniSize.Y = universe.GetLength(1); // sets the DialogForm y to the y of universe
             if (DialogResult.OK == uniSize.ShowDialog())
@@ -623,7 +623,7 @@ namespace Game_of_Life
         }
         private void changeSizeToolStripMenuItem1_Click(object sender, EventArgs e) // Changes the Size of the Universe - Context Menu
         {
-            DialogForm uniSize = new DialogForm(); // creates the instance of DialogForm
+            UniSizeForm uniSize = new UniSizeForm(); // creates the instance of DialogForm
             uniSize.X = universe.GetLength(0); // sets the DialogForm x to the x of universe
             uniSize.Y = universe.GetLength(1); // sets the DialogForm y to the y of universe
             if (DialogResult.OK == uniSize.ShowDialog())

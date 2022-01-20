@@ -1,7 +1,7 @@
 ﻿
 namespace Game_of_Life
 {
-    partial class DialogForm
+    partial class UniSizeForm
     {
         /// <summary>
         /// Required designer variable.
@@ -107,7 +107,7 @@ namespace Game_of_Life
             this.numericUpDownL.Size = new System.Drawing.Size(119, 20);
             this.numericUpDownL.TabIndex = 8;
             // 
-            // DialogForm
+            // UniSizeForm
             // 
             this.AcceptButton = this.okButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -124,7 +124,7 @@ namespace Game_of_Life
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "DialogForm";
+            this.Name = "UniSizeForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Universe Size Settings";
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownW)).EndInit();

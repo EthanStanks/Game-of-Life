@@ -10,10 +10,10 @@ using System.Windows.Forms;
 
 namespace Game_of_Life
 {
-    public partial class DialogForm : Form
+    public partial class UniSizeForm : Form
     {
 
-        public DialogForm()
+        public UniSizeForm()
         {
             InitializeComponent();
         }
