@@ -12,67 +12,22 @@ namespace Game_of_Life
 {
     public partial class DialogForm : Form
     {
-        // Default text for the form title
-        string formTitle = "Change Universe Size";
-
-        // X of the uni
-        int x = 30;
-
-        // Y of the uni
-        int y = 30;
-
-        // Bool if true will commit the changes made
-        bool commitChange = false;
 
         public DialogForm()
         {
             InitializeComponent();
-            labelTitle.Text = formTitle;
-            commitChange = false;
         }
 
-        public int DialogX
+        public int X
         {
-            get { return x; }
-            set { x = value; }
-        }
-        public int DialogY
-        {
-            get { return y; }
-            set { y = value; }
-        }
-        public string FormTitle
-        {
-            get { return formTitle; }
-            set { formTitle = value; }
-        }
-        public bool FormCommit
-        {
-            get { return commitChange; }
+            get { return (int)numericUpDownW.Value; }
+            set { numericUpDownW.Value = value; }
         }
 
-        private void textBoxW_TextChanged(object sender, EventArgs e) // Width text box
+        public int Y
         {
-            int vari;
-            bool success = int.TryParse(textBoxW.Text, out vari);
-            if (success) x = vari;
-        }
-
-        private void textBoxL_TextChanged(object sender, EventArgs e) // Length text box
-        {
-            int vari;
-            bool success = int.TryParse(textBoxL.Text, out vari);
-            if (success) y = vari;
-        }
-
-        private void okButton_Click(object sender, EventArgs e)
-        {
-            commitChange = true;
-        }
-
-        private void cancelButton_Click(object sender, EventArgs e)
-        {
-            commitChange = false;
+            get { return (int)numericUpDownL.Value; }
+            set { numericUpDownL.Value = value; }
         }
     }
 }

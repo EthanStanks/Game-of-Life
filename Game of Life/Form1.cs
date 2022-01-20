@@ -30,8 +30,6 @@ namespace Game_of_Life
         // Neighbor Bool - True if finite - False if Toroidal
         bool isFinite = true;
 
-
-
         // Show/Hide Grid Bool - True if show - False if hide
         bool showGrid = true;
 
@@ -412,12 +410,14 @@ namespace Game_of_Life
         }
         private void changeSizeToolStripMenuItem_Click(object sender, EventArgs e) // change size of universe
         {
-            DialogForm uniSize = new DialogForm();
-            uniSize.ShowDialog();
-            if (uniSize.FormCommit == true)
+            DialogForm uniSize = new DialogForm(); // creates the instance of DialogForm
+            uniSize.X = universe.GetLength(0); // sets the DialogForm x to the x of universe
+            uniSize.Y = universe.GetLength(1); // sets the DialogForm y to the y of universe
+            if (DialogResult.OK == uniSize.ShowDialog())
             {
-                int x = uniSize.DialogX;
-                int y = uniSize.DialogY;
+                int x = uniSize.X; // sets x to DialogForm x
+                int y = uniSize.Y; // sets y to DialogForm y
+                // resizes the universe array
                 bool[,] newUni = new bool[x, y];
                 bool[,] temp = universe;
                 universe = newUni;
@@ -447,6 +447,16 @@ namespace Game_of_Life
             {
                 seed = dlg.GetNumber(); // gets the seed that the user enters
                 RandomSeed(seed); // calls the RandomSeed method passing the seed
+            }
+        }
+        private void generationSpeedToolStripMenuItem_Click(object sender, EventArgs e) // Change generation time click
+        {
+            SpeedForm dlg = new SpeedForm(); // Making an instance of the Speed Form
+            dlg.Speed = miliTime; // displays the current set time in the form
+            if (DialogResult.OK == dlg.ShowDialog()) // If dlg.ShowDialog returns with OK
+            {
+                miliTime = dlg.Speed; // sets miliTime to the number the user inputed
+                timer.Interval = miliTime; // updates the time interval
             }
         }
 
@@ -595,10 +605,51 @@ namespace Game_of_Life
 
         } // Hide Neighbor Count
 
-        private void generationSpeedToolStripMenuItem_Click(object sender, EventArgs e) // Change generation time click
-        {
+        #region Context Menu for Graphics Panel 1
 
+        private void clickEvent1ToolStripMenuItem_Click(object sender, EventArgs e) // Random Universe from Time - Context Menu
+        {
+            RandomTime(); // calls the Random Time method
         }
+
+        private void clickEvent2ToolStripMenuItem_Click(object sender, EventArgs e) // Random Universe from Seed - Context Menu
+        {
+            RandomSeedForm dlg = new RandomSeedForm(); // Making an instance of the RandomSeedForm
+            if (DialogResult.OK == dlg.ShowDialog()) // If dlg.ShowDialog returns with OK
+            {
+                seed = dlg.GetNumber(); // gets the seed that the user enters
+                RandomSeed(seed); // calls the RandomSeed method passing the seed
+            }
+        }
+        private void changeSizeToolStripMenuItem1_Click(object sender, EventArgs e) // Changes the Size of the Universe - Context Menu
+        {
+            DialogForm uniSize = new DialogForm(); // creates the instance of DialogForm
+            uniSize.X = universe.GetLength(0); // sets the DialogForm x to the x of universe
+            uniSize.Y = universe.GetLength(1); // sets the DialogForm y to the y of universe
+            if (DialogResult.OK == uniSize.ShowDialog())
+            {
+                int x = uniSize.X; // sets x to DialogForm x
+                int y = uniSize.Y; // sets y to DialogForm y
+                // resizes the universe array
+                bool[,] newUni = new bool[x, y];
+                bool[,] temp = universe;
+                universe = newUni;
+                newUni = temp;
+                graphicsPanel1.Invalidate();
+            }
+        }
+        private void changeSpeedToolStripMenuItem_Click(object sender, EventArgs e) // Changes the Generation Speed - Context Menu
+        {
+            SpeedForm dlg = new SpeedForm(); // Making an instance of the Speed Form
+            dlg.Speed = miliTime; // displays the current set time in the form
+            if (DialogResult.OK == dlg.ShowDialog()) // If dlg.ShowDialog returns with OK
+            {
+                miliTime = dlg.Speed; // sets miliTime to the number the user inputed
+                timer.Interval = miliTime; // updates the time interval
+            }
+        }
+
+        #endregion
 
     }
 }

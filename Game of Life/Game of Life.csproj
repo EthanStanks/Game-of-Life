@@ -69,6 +69,12 @@
     <Compile Include="RandomSeedForm.Designer.cs">
       <DependentUpon>RandomSeedForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="SpeedForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SpeedForm.Designer.cs">
+      <DependentUpon>SpeedForm.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="DialogForm.resx">
       <DependentUpon>DialogForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -87,6 +93,9 @@
     </Compile>
     <EmbeddedResource Include="RandomSeedForm.resx">
       <DependentUpon>RandomSeedForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SpeedForm.resx">
+      <DependentUpon>SpeedForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

@@ -67,10 +67,12 @@ namespace Game_of_Life
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabelGenerations = new System.Windows.Forms.ToolStripStatusLabel();
             this.livingCellStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.graphicsPanel1 = new Game_of_Life.GraphicsPanel();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.clickEvent1ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.clickEvent2ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.changeSizeToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.changeSpeedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.graphicsPanel1 = new Game_of_Life.GraphicsPanel();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -231,7 +233,7 @@ namespace Game_of_Life
             // raToolStripMenuItem
             // 
             this.raToolStripMenuItem.Name = "raToolStripMenuItem";
-            this.raToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.raToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
             this.raToolStripMenuItem.Text = "Random Uni (Seed)";
             this.raToolStripMenuItem.Click += new System.EventHandler(this.raToolStripMenuItem_Click);
             // 
@@ -239,7 +241,7 @@ namespace Game_of_Life
             // 
             this.changeSizeToolStripMenuItem.Name = "changeSizeToolStripMenuItem";
             this.changeSizeToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
-            this.changeSizeToolStripMenuItem.Text = "Change Size";
+            this.changeSizeToolStripMenuItem.Text = "Change Uni Size";
             this.changeSizeToolStripMenuItem.Click += new System.EventHandler(this.changeSizeToolStripMenuItem_Click);
             // 
             // generationSpeedToolStripMenuItem
@@ -398,6 +400,44 @@ namespace Game_of_Life
             this.livingCellStripStatusLabel1.Size = new System.Drawing.Size(81, 17);
             this.livingCellStripStatusLabel1.Text = "Cells Alive = 0";
             // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.clickEvent1ToolStripMenuItem,
+            this.clickEvent2ToolStripMenuItem,
+            this.changeSizeToolStripMenuItem1,
+            this.changeSpeedToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(181, 114);
+            // 
+            // clickEvent1ToolStripMenuItem
+            // 
+            this.clickEvent1ToolStripMenuItem.Name = "clickEvent1ToolStripMenuItem";
+            this.clickEvent1ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.clickEvent1ToolStripMenuItem.Text = "Random Uni (Time)";
+            this.clickEvent1ToolStripMenuItem.Click += new System.EventHandler(this.clickEvent1ToolStripMenuItem_Click);
+            // 
+            // clickEvent2ToolStripMenuItem
+            // 
+            this.clickEvent2ToolStripMenuItem.Name = "clickEvent2ToolStripMenuItem";
+            this.clickEvent2ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.clickEvent2ToolStripMenuItem.Text = "Random Uni (Seed)";
+            this.clickEvent2ToolStripMenuItem.Click += new System.EventHandler(this.clickEvent2ToolStripMenuItem_Click);
+            // 
+            // changeSizeToolStripMenuItem1
+            // 
+            this.changeSizeToolStripMenuItem1.Name = "changeSizeToolStripMenuItem1";
+            this.changeSizeToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.changeSizeToolStripMenuItem1.Text = "Change Uni Size";
+            this.changeSizeToolStripMenuItem1.Click += new System.EventHandler(this.changeSizeToolStripMenuItem1_Click);
+            // 
+            // changeSpeedToolStripMenuItem
+            // 
+            this.changeSpeedToolStripMenuItem.Name = "changeSpeedToolStripMenuItem";
+            this.changeSpeedToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.changeSpeedToolStripMenuItem.Text = "Generation Speed";
+            this.changeSpeedToolStripMenuItem.Click += new System.EventHandler(this.changeSpeedToolStripMenuItem_Click);
+            // 
             // graphicsPanel1
             // 
             this.graphicsPanel1.BackColor = System.Drawing.SystemColors.Window;
@@ -409,26 +449,6 @@ namespace Game_of_Life
             this.graphicsPanel1.TabIndex = 3;
             this.graphicsPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.graphicsPanel1_Paint);
             this.graphicsPanel1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.graphicsPanel1_MouseClick);
-            // 
-            // contextMenuStrip1
-            // 
-            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.clickEvent1ToolStripMenuItem,
-            this.clickEvent2ToolStripMenuItem});
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(142, 48);
-            // 
-            // clickEvent1ToolStripMenuItem
-            // 
-            this.clickEvent1ToolStripMenuItem.Name = "clickEvent1ToolStripMenuItem";
-            this.clickEvent1ToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
-            this.clickEvent1ToolStripMenuItem.Text = "Click Event 1";
-            // 
-            // clickEvent2ToolStripMenuItem
-            // 
-            this.clickEvent2ToolStripMenuItem.Name = "clickEvent2ToolStripMenuItem";
-            this.clickEvent2ToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
-            this.clickEvent2ToolStripMenuItem.Text = "Click Event 2";
             // 
             // Form1
             // 
@@ -498,6 +518,8 @@ namespace Game_of_Life
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem clickEvent1ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem clickEvent2ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem changeSizeToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem changeSpeedToolStripMenuItem;
     }
 }
 
