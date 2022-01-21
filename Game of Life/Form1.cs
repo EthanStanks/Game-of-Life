@@ -54,9 +54,21 @@ namespace Game_of_Life
 
             // Color Change ComboBox Default
             ColorComboBox.SelectedIndex = 0;
-
             // CountNeighbors ComboBox Default
             CountNeighborsComboBox.SelectedIndex = 0;
+
+            // Reading the Properties
+            ColorComboBox.SelectedIndex = Properties.Settings.Default.ColorComboBoxIndex; // Sets the Color Combo Box Index to the saved index
+            ColorComboBox.Text = Properties.Settings.Default.ColorComboBoxText; // Sets the Color Combo Box Text to the saved text
+            graphicsPanel1.Invalidate();
+            miliTime = Properties.Settings.Default.MiliTime; // Sets the Generation Speed to the saved speed
+            CountNeighborsComboBox.SelectedIndex = Properties.Settings.Default.CountComboBoxIndex; // Sets the CountNeighbors Combo Box Index to the saved index
+            CountNeighborsComboBox.Text = Properties.Settings.Default.CountComboBoxText; // Sets the CountNeighbors Combo Box Text to the saved text
+            isFinite = Properties.Settings.Default.IsFinite; // Sets isFinite to the saved bool value
+            showCount = Properties.Settings.Default.ShowCount; // Sets showCount to the saved bool value
+            showGrid = Properties.Settings.Default.ShowGrid; // Sets showGrid to the saved bool value
+
+
 
             // Setup the timer
             timer.Interval = miliTime; // milliseconds
@@ -651,5 +663,55 @@ namespace Game_of_Life
 
         #endregion
 
+        private void Form1_FormClosed(object sender, FormClosedEventArgs e) // when the form is closed
+        {
+            // Updating the Properties
+            Properties.Settings.Default.ColorComboBoxIndex = ColorComboBox.SelectedIndex; // Saves the Color Combo Box Index
+            Properties.Settings.Default.ColorComboBoxText = ColorComboBox.Text; // Saves the Color Combo Box Text
+            Properties.Settings.Default.MiliTime = miliTime; // Saves the Generation Speed
+
+            Properties.Settings.Default.CountComboBoxIndex = CountNeighborsComboBox.SelectedIndex; // Saves the CountNeighbors Combo Box Index
+            Properties.Settings.Default.CountComboBoxText = CountNeighborsComboBox.Text; // Saves the CountNeighbors Combo Box Text
+            Properties.Settings.Default.IsFinite = isFinite; // Saves isFinite value
+            Properties.Settings.Default.ShowCount = showCount; // Saves showCount value
+            Properties.Settings.Default.ShowGrid = showGrid; // Saves showGrid value
+
+            // Saves the Update
+            Properties.Settings.Default.Save();
+        }
+
+        private void resetToolStripMenuItem_Click(object sender, EventArgs e) // Reset Click Event
+        {
+            Properties.Settings.Default.Reset();
+
+            // Reading the Properties
+            ColorComboBox.SelectedIndex = Properties.Settings.Default.ColorComboBoxIndex; // Sets the Color Combo Box Index to the saved index
+            ColorComboBox.Text = Properties.Settings.Default.ColorComboBoxText; // Sets the Color Combo Box Text to the saved text
+            graphicsPanel1.Invalidate();
+            miliTime = Properties.Settings.Default.MiliTime; // Sets the Generation Speed to the saved speed
+            CountNeighborsComboBox.SelectedIndex = Properties.Settings.Default.CountComboBoxIndex; // Sets the CountNeighbors Combo Box Index to the saved index
+            CountNeighborsComboBox.Text = Properties.Settings.Default.CountComboBoxText; // Sets the CountNeighbors Combo Box Text to the saved text
+            isFinite = Properties.Settings.Default.IsFinite; // Sets isFinite to the saved bool value
+            showCount = Properties.Settings.Default.ShowCount; // Sets showCount to the saved bool value
+            showGrid = Properties.Settings.Default.ShowGrid; // Sets showGrid to the saved bool value
+        }
+
+        private void reloadToolStripMenuItem_Click(object sender, EventArgs e) // Reload Click Event
+        {
+            Properties.Settings.Default.Reload();
+
+            // Reading the Properties
+            // Colors
+            ColorComboBox.SelectedIndex = Properties.Settings.Default.ColorComboBoxIndex; // Sets the Color Combo Box Index to the saved index
+            ColorComboBox.Text = Properties.Settings.Default.ColorComboBoxText; // Sets the Color Combo Box Text to the saved text
+            graphicsPanel1.Invalidate();
+            miliTime = Properties.Settings.Default.MiliTime; // Sets the Generation Speed to the saved speed
+            CountNeighborsComboBox.SelectedIndex = Properties.Settings.Default.CountComboBoxIndex; // Sets the CountNeighbors Combo Box Index to the saved index
+            CountNeighborsComboBox.Text = Properties.Settings.Default.CountComboBoxText; // Sets the CountNeighbors Combo Box Text to the saved text
+            isFinite = Properties.Settings.Default.IsFinite; // Sets isFinite to the saved bool value
+            showCount = Properties.Settings.Default.ShowCount; // Sets showCount to the saved bool value
+            showGrid = Properties.Settings.Default.ShowGrid; // Sets showGrid to the saved bool value
+
+        }
     }
 }
