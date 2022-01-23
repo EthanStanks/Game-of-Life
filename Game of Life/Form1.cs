@@ -400,7 +400,11 @@ namespace Game_of_Life
 
         private void openToolStripButton_Click(object sender, EventArgs e) // open button on tool bar
         {
-
+            OpenFile();
+        }
+        private void openToolStripMenuItem_Click(object sender, EventArgs e) // open from menu strip
+        {
+            OpenFile();
         }
 
         private void newToolStripButton_Click(object sender, EventArgs e) // new button on tool bar
@@ -768,6 +772,64 @@ namespace Game_of_Life
 
                 writer.Close(); // closes the file after everything has been written
             }
+        } //SaveAs function
+
+        private void OpenFile()
+        {
+            OpenFileDialog dlg = new OpenFileDialog();
+            dlg.Filter = "All Files|*.*|Cells|*.cells";
+            dlg.FilterIndex = 2;
+
+            if (DialogResult.OK == dlg.ShowDialog())
+            {
+                StreamReader reader = new StreamReader(dlg.FileName);
+
+                int maxWidth = 0; // width of the data in the file
+                int maxHeight = 0; // height of the data in the file
+
+                while (!reader.EndOfStream) // Iterates through the file once to get its size
+                {
+                    string row = reader.ReadLine(); // reads one row at a time
+
+                    if (row[0] == '!') continue; // if the row starts with ! then it will continue
+                    else
+                    {
+                        maxHeight++; // adds one to maxHeight to calculate the height of the data
+                        maxWidth = row.Length; // sets the width to how long the row is of the data
+                    }
+                }
+
+                int x = maxWidth; // sets x to maxWidth
+                int y = maxHeight; // sets y to maxHeight
+                // resizes the universe array
+                bool[,] newUni = new bool[x, y];
+                bool[,] temp = universe;
+                universe = newUni;
+                newUni = temp;
+                graphicsPanel1.Invalidate();
+
+                reader.BaseStream.Seek(0, SeekOrigin.Begin); // resets the file pointer to the beginning of the file
+
+                int yPos = 0; // for the y position
+                while (!reader.EndOfStream) // Iterates through the file again, this time reading in the cells
+                {
+                    string row = reader.ReadLine(); // reads one row at a time
+
+                    if (row[0] == '!') continue; // if the row starts with ! then it will continue
+                    else // if it's not !
+                    {
+                        for (int xPos = 0; xPos < row.Length; xPos++) // the row needs to be iterated through
+                        {
+                            if (row[xPos] == 'O') universe[xPos, yPos] = true; // if it is O then set that cell to alive
+                            else if (row[xPos] == '.') universe[xPos, yPos] = false; // if it is . then set that cell to dead
+                        }
+                        yPos++; // adds one to the yPos counter
+                    }
+                }
+
+                reader.Close(); // closes the file
+            }
         }
+
     }
 }

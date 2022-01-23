@@ -126,6 +126,7 @@ namespace Game_of_Life
             this.openToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
             this.openToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.openToolStripMenuItem.Text = "&Open";
+            this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
             // toolStripSeparator
             // 
@@ -229,28 +230,28 @@ namespace Game_of_Life
             // randomUniTimeToolStripMenuItem
             // 
             this.randomUniTimeToolStripMenuItem.Name = "randomUniTimeToolStripMenuItem";
-            this.randomUniTimeToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
+            this.randomUniTimeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.randomUniTimeToolStripMenuItem.Text = "Random Uni (Time)";
             this.randomUniTimeToolStripMenuItem.Click += new System.EventHandler(this.randomUniTimeToolStripMenuItem_Click);
             // 
             // raToolStripMenuItem
             // 
             this.raToolStripMenuItem.Name = "raToolStripMenuItem";
-            this.raToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
+            this.raToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.raToolStripMenuItem.Text = "Random Uni (Seed)";
             this.raToolStripMenuItem.Click += new System.EventHandler(this.raToolStripMenuItem_Click);
             // 
             // changeSizeToolStripMenuItem
             // 
             this.changeSizeToolStripMenuItem.Name = "changeSizeToolStripMenuItem";
-            this.changeSizeToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
+            this.changeSizeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.changeSizeToolStripMenuItem.Text = "Change Uni Size";
             this.changeSizeToolStripMenuItem.Click += new System.EventHandler(this.changeSizeToolStripMenuItem_Click);
             // 
             // generationSpeedToolStripMenuItem
             // 
             this.generationSpeedToolStripMenuItem.Name = "generationSpeedToolStripMenuItem";
-            this.generationSpeedToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
+            this.generationSpeedToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.generationSpeedToolStripMenuItem.Text = "Generation Speed";
             this.generationSpeedToolStripMenuItem.Click += new System.EventHandler(this.generationSpeedToolStripMenuItem_Click);
             // 
