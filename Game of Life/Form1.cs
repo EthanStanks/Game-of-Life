@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -726,5 +727,47 @@ namespace Game_of_Life
 
         }
         #endregion
+
+        private void saveAsToolStripMenuItem_Click(object sender, EventArgs e) // Save as menu click event
+        {
+            SaveAs();
+        }
+
+        private void SaveAs()
+        {
+            SaveFileDialog dlg = new SaveFileDialog(); // creates an instance of the save file dialog
+            dlg.Filter = "All Files|*.*|Cells|*.cells"; // default ending for the file
+            dlg.FilterIndex = 2; dlg.DefaultExt = "cells"; // selects which default to use and if they don't include one to just use .cells
+
+            DateTime dateTime = DateTime.Now; // creates an instance of the date and time
+
+            if (DialogResult.OK == dlg.ShowDialog())
+            {
+                StreamWriter writer = new StreamWriter(dlg.FileName);
+
+                // Write any comments you want to include
+                writer.WriteLine("! " + dateTime.ToString("F")); // writes the current date and time into a comment
+
+                int uniX = universe.GetLength(0);
+                int uniY = universe.GetLength(1);
+                // Iterate through the universe one row at a time.
+                for (int y = 0; y < uniY; y++)
+                {
+                    // Create a string to represent the current row.
+                    String currentRow = string.Empty;
+
+                    // Iterate through the current row one cell at a time.
+                    for (int x = 0; x < uniX; x++)
+                    {
+                        if (universe[x, y] == true) currentRow += "O"; // if alive append O to the row string
+                        else if (universe[x, y] == false) currentRow += "."; // if dead append . to the row string
+                    }
+
+                    writer.WriteLine(currentRow); // write the current row to the file
+                }
+
+                writer.Close(); // closes the file after everything has been written
+            }
+        }
     }
 }
