@@ -44,6 +44,9 @@ namespace Game_of_Life
         // Seed Variable
         Int32 seed = 0;
 
+        // File Name String
+        string FileName = string.Empty;
+
 
 
 
@@ -395,7 +398,15 @@ namespace Game_of_Life
 
         private void saveToolStripButton_Click(object sender, EventArgs e) // save button on tool bar
         {
-
+            SaveFile();
+        }
+        private void saveToolStripMenuItem_Click(object sender, EventArgs e) // save button menu click event
+        {
+            SaveFile();
+        }
+        private void saveAsToolStripMenuItem_Click(object sender, EventArgs e) // Save as button menu click event
+        {
+            SaveAs();
         }
 
         private void openToolStripButton_Click(object sender, EventArgs e) // open button on tool bar
@@ -732,10 +743,7 @@ namespace Game_of_Life
         }
         #endregion
 
-        private void saveAsToolStripMenuItem_Click(object sender, EventArgs e) // Save as menu click event
-        {
-            SaveAs();
-        }
+        
 
         private void SaveAs()
         {
@@ -748,7 +756,7 @@ namespace Game_of_Life
             if (DialogResult.OK == dlg.ShowDialog())
             {
                 StreamWriter writer = new StreamWriter(dlg.FileName);
-
+                FileName = dlg.FileName; // sets the FileName variable to what the user inputs
                 // Write any comments you want to include
                 writer.WriteLine("! " + dateTime.ToString("F")); // writes the current date and time into a comment
 
@@ -773,6 +781,37 @@ namespace Game_of_Life
                 writer.Close(); // closes the file after everything has been written
             }
         } //SaveAs function
+
+        private void SaveFile()
+        {
+            if (string.IsNullOrEmpty(this.FileName)) SaveAs();
+            else
+            {
+                StreamWriter writer = new StreamWriter(FileName);
+                DateTime dateTime = DateTime.Now; // creates an instance of the date and time
+                writer.WriteLine("! " + dateTime.ToString("F")); // writes the current date and time into a comment
+
+                int uniX = universe.GetLength(0);
+                int uniY = universe.GetLength(1);
+                // Iterate through the universe one row at a time.
+                for (int y = 0; y < uniY; y++)
+                {
+                    // Create a string to represent the current row.
+                    String currentRow = string.Empty;
+
+                    // Iterate through the current row one cell at a time.
+                    for (int x = 0; x < uniX; x++)
+                    {
+                        if (universe[x, y] == true) currentRow += "O"; // if alive append O to the row string
+                        else if (universe[x, y] == false) currentRow += "."; // if dead append . to the row string
+                    }
+
+                    writer.WriteLine(currentRow); // write the current row to the file
+                }
+
+                writer.Close(); // closes the file after everything has been written
+            }
+        }
 
         private void OpenFile()
         {
@@ -826,7 +865,7 @@ namespace Game_of_Life
                         yPos++; // adds one to the yPos counter
                     }
                 }
-
+                FileName = dlg.FileName; // sets the FileName variable to the opened name
                 reader.Close(); // closes the file
             }
         }
