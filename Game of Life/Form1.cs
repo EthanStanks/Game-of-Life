@@ -350,6 +350,8 @@ namespace Game_of_Life
             // Cleaning up pens and brushes
             gridPen.Dispose();
             cellBrush.Dispose();
+
+            livingCellStripStatusLabel1.Text = "Cells Alive = " + aliveCount; // update the status bar
         }
 
         #region Mouse Click Functions
@@ -370,6 +372,16 @@ namespace Game_of_Life
 
                 // Toggle the cell's state
                 universe[(int)x, (int)y] = !universe[(int)x, (int)y];
+                if (universe[(int)x, (int)y] == true)
+                {
+                    aliveCount++;
+                    livingCellStripStatusLabel1.Text = "Cells Alive = " + aliveCount;
+                }
+                else
+                {
+                    if (aliveCount >= 1) aliveCount--;
+                    livingCellStripStatusLabel1.Text = "Cells Alive = " + aliveCount;
+                }
 
                 // Tell Windows you need to repaint
                 graphicsPanel1.Invalidate();
@@ -822,7 +834,7 @@ namespace Game_of_Life
             if (DialogResult.OK == dlg.ShowDialog())
             {
                 StreamReader reader = new StreamReader(dlg.FileName);
-
+                aliveCount = 0; // resets aliveCount
                 int maxWidth = 0; // width of the data in the file
                 int maxHeight = 0; // height of the data in the file
 
@@ -859,13 +871,18 @@ namespace Game_of_Life
                     {
                         for (int xPos = 0; xPos < row.Length; xPos++) // the row needs to be iterated through
                         {
-                            if (row[xPos] == 'O') universe[xPos, yPos] = true; // if it is O then set that cell to alive
+                            if (row[xPos] == 'O') // if it is O then set that cell to alive
+                            {
+                                universe[xPos, yPos] = true;
+                                aliveCount++; // update the aliveCount
+                            }
                             else if (row[xPos] == '.') universe[xPos, yPos] = false; // if it is . then set that cell to dead
                         }
                         yPos++; // adds one to the yPos counter
                     }
                 }
                 FileName = dlg.FileName; // sets the FileName variable to the opened name
+                livingCellStripStatusLabel1.Text = "Cells Alive = " + aliveCount; // updates alive count on status bar
                 reader.Close(); // closes the file
             }
         }
