@@ -429,6 +429,10 @@ namespace Game_of_Life
         {
             OpenFile();
         }
+        private void importToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ImportFile();
+        }
 
         private void newToolStripButton_Click(object sender, EventArgs e) // new button on tool bar
         {
@@ -755,7 +759,7 @@ namespace Game_of_Life
         }
         #endregion
 
-        
+        #region Save and Opening Functions
 
         private void SaveAs()
         {
@@ -823,7 +827,7 @@ namespace Game_of_Life
 
                 writer.Close(); // closes the file after everything has been written
             }
-        }
+        } // Save Function
 
         private void OpenFile()
         {
@@ -833,6 +837,14 @@ namespace Game_of_Life
 
             if (DialogResult.OK == dlg.ShowDialog())
             {
+                for (int h = 0; h < universe.GetLength(1); h++)
+                {
+                    // Iterate through the universe in the x, left to right
+                    for (int w = 0; w < universe.GetLength(0); w++)
+                    {
+                        universe[w, h] = false;
+                    }
+                }
                 StreamReader reader = new StreamReader(dlg.FileName);
                 aliveCount = 0; // resets aliveCount
                 int maxWidth = 0; // width of the data in the file
@@ -883,9 +895,121 @@ namespace Game_of_Life
                 }
                 FileName = dlg.FileName; // sets the FileName variable to the opened name
                 livingCellStripStatusLabel1.Text = "Cells Alive = " + aliveCount; // updates alive count on status bar
+                graphicsPanel1.Invalidate();
                 reader.Close(); // closes the file
             }
-        }
+        } // Open Function
+        private void ImportFile()
+        {
+            OpenFileDialog dlg = new OpenFileDialog();
+            dlg.Filter = "All Files|*.*|Cells|*.cells";
+            dlg.FilterIndex = 2;
 
+            if (DialogResult.OK == dlg.ShowDialog())
+            {
+                for (int h = 0; h < universe.GetLength(1); h++)
+                {
+                    // Iterate through the universe in the x, left to right
+                    for (int w = 0; w < universe.GetLength(0); w++)
+                    {
+                        universe[w, h] = false; // sets everything to dead
+                    }
+                }
+                StreamReader reader = new StreamReader(dlg.FileName);
+                aliveCount = 0; // resets aliveCount
+                int maxWidth = 0; // width of the data in the file
+                int maxHeight = 0; // height of the data in the file
+
+                while (!reader.EndOfStream) // Iterates through the file once to get its size
+                {
+                    string row = reader.ReadLine(); // reads one row at a time
+
+                    if (row[0] == '!') continue; // if the row starts with ! then it will continue
+                    else
+                    {
+                        maxHeight++; // adds one to maxHeight to calculate the height of the data
+                        maxWidth = row.Length; // sets the width to how long the row is of the data
+                    }
+                }
+
+                int x = maxWidth; // sets x to maxWidth
+                int y = maxHeight; // sets y to maxHeight
+                // makes a copy universe set to the size of the data
+                bool[,] newUni = new bool[x, y];
+
+                reader.BaseStream.Seek(0, SeekOrigin.Begin); // resets the file pointer to the beginning of the file
+
+                int yPos = 0; // for the y position
+                while (!reader.EndOfStream) // Iterates through the file again, this time reading in the cells
+                {
+                    string row = reader.ReadLine(); // reads one row at a time
+
+                    if (row[0] == '!') continue; // if the row starts with ! then it will continue
+                    else // if it's not !
+                    {
+                        for (int xPos = 0; xPos < row.Length; xPos++) // the row needs to be iterated through
+                        {
+                            if (row[xPos] == 'O') // if it is O then set that cell to alive
+                            {
+                                newUni[xPos, yPos] = true;
+                            }
+                            else if (row[xPos] == '.') newUni[xPos, yPos] = false; // if it is . then set that cell to dead
+                        }
+                        yPos++; // adds one to the yPos counter
+                    }
+                }
+                int uniW = universe.GetLength(0);
+                int uniH = universe.GetLength(1);
+                if (uniW <= maxWidth && uniH <= maxHeight) // if the universe size is less than the copy
+                {
+                    for (int h = 0; h < uniH; h++)
+                    {
+                        // Iterate through the universe in the x, left to right
+                        for (int w = 0; w < uniW; w++)
+                        {
+                            if (newUni[w, h] == true) // if the cell is alive in the copy uni
+                            {
+                                universe[w, h] = true;
+                                aliveCount++; // update the aliveCount
+                            }
+                            else if (newUni[w, h] == false) universe[w, h] = false; // if the cell is dead in the copy uni
+                        }
+                    }
+                }
+                else
+                { // if the copy size is less than the universe
+                    reader.BaseStream.Seek(0, SeekOrigin.Begin); // resets the file pointer to the beginning of the file
+
+                    yPos = 0; // for the y position
+                    while (!reader.EndOfStream) // Iterates through the file again, this time reading in the cells
+                    {
+                        string row = reader.ReadLine(); // reads one row at a time
+
+                        if (row[0] == '!') continue; // if the row starts with ! then it will continue
+                        else // if it's not !
+                        {
+                            for (int xPos = 0; xPos < row.Length; xPos++) // the row needs to be iterated through
+                            {
+                                if (row[xPos] == 'O') // if it is O then set that cell to alive
+                                {
+                                    universe[xPos, yPos] = true;
+                                }
+                                else if (row[xPos] == '.') universe[xPos, yPos] = false; // if it is . then set that cell to dead
+                            }
+                            yPos++; // adds one to the yPos counter
+                        }
+                    }
+                }
+
+
+                FileName = dlg.FileName; // sets the FileName variable to the opened name
+                livingCellStripStatusLabel1.Text = "Cells Alive = " + aliveCount; // updates alive count on status bar
+                graphicsPanel1.Invalidate();
+                reader.Close(); // closes the file
+
+
+            }
+        } // Importing Function
+        #endregion
     }
 }

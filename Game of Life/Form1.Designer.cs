@@ -73,6 +73,7 @@ namespace Game_of_Life
             this.changeSizeToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.changeSpeedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.graphicsPanel1 = new Game_of_Life.GraphicsPanel();
+            this.importToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -99,6 +100,7 @@ namespace Game_of_Life
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.newToolStripMenuItem,
             this.openToolStripMenuItem,
+            this.importToolStripMenuItem,
             this.toolStripSeparator,
             this.saveToolStripMenuItem,
             this.saveAsToolStripMenuItem,
@@ -231,28 +233,28 @@ namespace Game_of_Life
             // randomUniTimeToolStripMenuItem
             // 
             this.randomUniTimeToolStripMenuItem.Name = "randomUniTimeToolStripMenuItem";
-            this.randomUniTimeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.randomUniTimeToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
             this.randomUniTimeToolStripMenuItem.Text = "Random Uni (Time)";
             this.randomUniTimeToolStripMenuItem.Click += new System.EventHandler(this.randomUniTimeToolStripMenuItem_Click);
             // 
             // raToolStripMenuItem
             // 
             this.raToolStripMenuItem.Name = "raToolStripMenuItem";
-            this.raToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.raToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
             this.raToolStripMenuItem.Text = "Random Uni (Seed)";
             this.raToolStripMenuItem.Click += new System.EventHandler(this.raToolStripMenuItem_Click);
             // 
             // changeSizeToolStripMenuItem
             // 
             this.changeSizeToolStripMenuItem.Name = "changeSizeToolStripMenuItem";
-            this.changeSizeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.changeSizeToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
             this.changeSizeToolStripMenuItem.Text = "Change Uni Size";
             this.changeSizeToolStripMenuItem.Click += new System.EventHandler(this.changeSizeToolStripMenuItem_Click);
             // 
             // generationSpeedToolStripMenuItem
             // 
             this.generationSpeedToolStripMenuItem.Name = "generationSpeedToolStripMenuItem";
-            this.generationSpeedToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.generationSpeedToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
             this.generationSpeedToolStripMenuItem.Text = "Generation Speed";
             this.generationSpeedToolStripMenuItem.Click += new System.EventHandler(this.generationSpeedToolStripMenuItem_Click);
             // 
@@ -455,6 +457,13 @@ namespace Game_of_Life
             this.graphicsPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.graphicsPanel1_Paint);
             this.graphicsPanel1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.graphicsPanel1_MouseClick);
             // 
+            // importToolStripMenuItem
+            // 
+            this.importToolStripMenuItem.Name = "importToolStripMenuItem";
+            this.importToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.importToolStripMenuItem.Text = "&Import";
+            this.importToolStripMenuItem.Click += new System.EventHandler(this.importToolStripMenuItem_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -526,6 +535,7 @@ namespace Game_of_Life
         private System.Windows.Forms.ToolStripMenuItem clickEvent2ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem changeSizeToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem changeSpeedToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem importToolStripMenuItem;
     }
 }
 
