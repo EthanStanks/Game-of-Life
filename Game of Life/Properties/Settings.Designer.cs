@@ -118,5 +118,29 @@ namespace Game_of_Life.Properties {
                 this["CountComboBoxIndex"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Hide Grid")]
+        public string HideGridText {
+            get {
+                return ((string)(this["HideGridText"]));
+            }
+            set {
+                this["HideGridText"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Hide Neighbor Count")]
+        public string HideCountText {
+            get {
+                return ((string)(this["HideCountText"]));
+            }
+            set {
+                this["HideCountText"] = value;
+            }
+        }
     }
 }

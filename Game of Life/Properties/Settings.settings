@@ -26,5 +26,11 @@
     <Setting Name="CountComboBoxIndex" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">0</Value>
     </Setting>
+    <Setting Name="HideGridText" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Hide Grid</Value>
+    </Setting>
+    <Setting Name="HideCountText" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Hide Neighbor Count</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

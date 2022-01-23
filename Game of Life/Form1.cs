@@ -12,8 +12,6 @@ namespace Game_of_Life
 {
     public partial class Form1 : Form
     {
-
-
         // The universe array
         bool[,] universe = new bool[30, 30];
 
@@ -66,7 +64,9 @@ namespace Game_of_Life
             CountNeighborsComboBox.Text = Properties.Settings.Default.CountComboBoxText; // Sets the CountNeighbors Combo Box Text to the saved text
             isFinite = Properties.Settings.Default.IsFinite; // Sets isFinite to the saved bool value
             showCount = Properties.Settings.Default.ShowCount; // Sets showCount to the saved bool value
+            hideNeighborCountToolStripMenuItem.Text = Properties.Settings.Default.HideCountText; // Sets the Hide Count button text
             showGrid = Properties.Settings.Default.ShowGrid; // Sets showGrid to the saved bool value
+            hideGridToolStripMenuItem.Text = Properties.Settings.Default.HideGridText; // Sets the Hide Grid button text
 
 
 
@@ -404,6 +404,7 @@ namespace Game_of_Life
 
         private void newToolStripButton_Click(object sender, EventArgs e) // new button on tool bar
         {
+            timer.Enabled = false; // Stop the timer
             ClearUniverse(); // Clears the Universe and Resets Status Bar
         }
 
@@ -471,8 +472,26 @@ namespace Game_of_Life
                 timer.Interval = miliTime; // updates the time interval
             }
         }
+        private void hideNeighborCountToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // hiding the neighbor count
+            if (hideNeighborCountToolStripMenuItem.Text == "Hide Neighbor Count")
+            {
+                hideNeighborCountToolStripMenuItem.Text = "Show Neighbor Count";
+                showCount = false;
+            }
+            else // showing neighbor count
+            {
+                hideNeighborCountToolStripMenuItem.Text = "Hide Neighbor Count";
+                showCount = true;
+            }
+            graphicsPanel1.Invalidate();
+
+        } // Hide Neighbor Count
 
         #endregion // Region of Click Functions
+
+        #region Combo Box Functions
 
         private void ColorComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -599,23 +618,8 @@ namespace Game_of_Life
                 isFinite = false;
             }
         } // Count Neighbors Combo Box
+        #endregion
 
-        private void hideNeighborCountToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            // hiding the neighbor count
-            if (hideNeighborCountToolStripMenuItem.Text == "Hide Neighbor Count")
-            {
-                hideNeighborCountToolStripMenuItem.Text = "Show Neighbor Count";
-                showCount = false;
-            }
-            else // showing neighbor count
-            {
-                hideNeighborCountToolStripMenuItem.Text = "Hide Neighbor Count";
-                showCount = true;
-            }
-            graphicsPanel1.Invalidate();
-
-        } // Hide Neighbor Count
 
         #region Context Menu for Graphics Panel 1
 
@@ -663,6 +667,7 @@ namespace Game_of_Life
 
         #endregion
 
+        #region Settings
         private void Form1_FormClosed(object sender, FormClosedEventArgs e) // when the form is closed
         {
             // Updating the Properties
@@ -675,6 +680,9 @@ namespace Game_of_Life
             Properties.Settings.Default.IsFinite = isFinite; // Saves isFinite value
             Properties.Settings.Default.ShowCount = showCount; // Saves showCount value
             Properties.Settings.Default.ShowGrid = showGrid; // Saves showGrid value
+
+            Properties.Settings.Default.HideGridText = hideGridToolStripMenuItem.Text; // Saves the Hide Grid button text
+            Properties.Settings.Default.HideCountText = hideNeighborCountToolStripMenuItem.Text; // Saves the Hide Count button text
 
             // Saves the Update
             Properties.Settings.Default.Save();
@@ -693,7 +701,9 @@ namespace Game_of_Life
             CountNeighborsComboBox.Text = Properties.Settings.Default.CountComboBoxText; // Sets the CountNeighbors Combo Box Text to the saved text
             isFinite = Properties.Settings.Default.IsFinite; // Sets isFinite to the saved bool value
             showCount = Properties.Settings.Default.ShowCount; // Sets showCount to the saved bool value
+            hideNeighborCountToolStripMenuItem.Text = Properties.Settings.Default.HideCountText; // Sets Hide Count button text
             showGrid = Properties.Settings.Default.ShowGrid; // Sets showGrid to the saved bool value
+            hideGridToolStripMenuItem.Text = Properties.Settings.Default.HideGridText; // Sets the Hide Grid button text
         }
 
         private void reloadToolStripMenuItem_Click(object sender, EventArgs e) // Reload Click Event
@@ -710,8 +720,11 @@ namespace Game_of_Life
             CountNeighborsComboBox.Text = Properties.Settings.Default.CountComboBoxText; // Sets the CountNeighbors Combo Box Text to the saved text
             isFinite = Properties.Settings.Default.IsFinite; // Sets isFinite to the saved bool value
             showCount = Properties.Settings.Default.ShowCount; // Sets showCount to the saved bool value
+            hideNeighborCountToolStripMenuItem.Text = Properties.Settings.Default.HideCountText; // Sets the Hide Count button text
             showGrid = Properties.Settings.Default.ShowGrid; // Sets showGrid to the saved bool value
+            hideGridToolStripMenuItem.Text = Properties.Settings.Default.HideGridText; // Sets the Hide Grid button text
 
         }
+        #endregion
     }
 }
