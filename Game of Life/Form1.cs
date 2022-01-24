@@ -17,7 +17,7 @@ namespace Game_of_Life
         private bool[,] universe = new bool[30, 30];
 
         // Drawing colors
-       private Color gridColor = Color.Black;
+        private Color gridColor = Color.Black;
         private Color cellColor = Color.Gray;
 
         // The Timer class
@@ -33,7 +33,7 @@ namespace Game_of_Life
         private bool showGrid = true;
 
         // Show/Hide Count Neighbor Bool - True if show - False if hide
-       private bool showCount = true;
+        private bool showCount = true;
 
         // Show/Hide HUD Bool - True if show - False if hide
         private bool showHUD = true;
@@ -46,6 +46,9 @@ namespace Game_of_Life
 
         // Seed Variable
         private Int32 seed = 0;
+
+        // Time Variable RNG
+        private string rngTime = string.Empty;
 
         // File Name String
         private string FileName = string.Empty;
@@ -61,7 +64,7 @@ namespace Game_of_Life
             InitializeComponent();
 
             // Color Change ComboBox Default
-            ColorComboBox.SelectedIndex = 0;
+            ColorComboBox.SelectedIndex = 1;
             // CountNeighbors ComboBox Default
             CountNeighborsComboBox.SelectedIndex = 0;
 
@@ -86,6 +89,7 @@ namespace Game_of_Life
         {
             // Random Number with Time
             Random rngT = new Random(); // instance of Random with time
+            seed = Environment.TickCount;
             RandomNext(rngT); // calls the random universe method with time rng instance
         }
         private void RandomNext(Random objRng)
@@ -103,7 +107,7 @@ namespace Game_of_Life
                     else universe[x, y] = false;
                 }
             }
-
+            toolStripStatusLabelSeed.Text = "Seed: " + seed.ToString();
             graphicsPanel1.Invalidate();
         }
         #endregion
@@ -332,7 +336,7 @@ namespace Game_of_Life
             NextGeneration();
         } // everytime the timer ticks
 
-        
+
 
         private void graphicsPanel1_Paint(object sender, PaintEventArgs e)
         {
@@ -515,6 +519,7 @@ namespace Game_of_Life
         private void randomUniTimeToolStripMenuItem_Click(object sender, EventArgs e) // Random Time Click Event
         {
             RandomTime(); // calls the Random Time method
+            
         }
         private void changeSizeToolStripMenuItem_Click(object sender, EventArgs e) // change size of universe
         {
@@ -1062,8 +1067,84 @@ namespace Game_of_Life
 
             }
         } // Importing Function
+
+        private void OpenCell(string cellName)
+        {
+            // This will open a saved cell file that is in the debug folder
+
+            for (int h = 0; h < universe.GetLength(1); h++)
+            {
+                // Iterate through the universe in the x, left to right
+                for (int w = 0; w < universe.GetLength(0); w++)
+                {
+                    universe[w, h] = false;
+                }
+            }
+            StreamReader reader = new StreamReader(cellName + ".cells");
+            aliveCount = 0; // resets aliveCount
+            int maxWidth = 0; // width of the data in the file
+            int maxHeight = 0; // height of the data in the file
+
+            while (!reader.EndOfStream) // Iterates through the file once to get its size
+            {
+                string row = reader.ReadLine(); // reads one row at a time
+
+                if (row[0] == '!') continue; // if the row starts with ! then it will continue
+                else
+                {
+                    maxHeight++; // adds one to maxHeight to calculate the height of the data
+                    maxWidth = row.Length; // sets the width to how long the row is of the data
+                }
+            }
+
+            int x = maxWidth; // sets x to maxWidth
+            int y = maxHeight; // sets y to maxHeight
+                               // resizes the universe array
+            bool[,] newUni = new bool[x, y];
+            bool[,] temp = universe;
+            universe = newUni;
+            newUni = temp;
+            graphicsPanel1.Invalidate();
+
+            reader.BaseStream.Seek(0, SeekOrigin.Begin); // resets the file pointer to the beginning of the file
+
+            int yPos = 0; // for the y position
+            while (!reader.EndOfStream) // Iterates through the file again, this time reading in the cells
+            {
+                string row = reader.ReadLine(); // reads one row at a time
+
+                if (row[0] == '!') continue; // if the row starts with ! then it will continue
+                else // if it's not !
+                {
+                    for (int xPos = 0; xPos < row.Length; xPos++) // the row needs to be iterated through
+                    {
+                        if (row[xPos] == 'O') // if it is O then set that cell to alive
+                        {
+                            universe[xPos, yPos] = true;
+                            aliveCount++; // update the aliveCount
+                        }
+                        else if (row[xPos] == '.') universe[xPos, yPos] = false; // if it is . then set that cell to dead
+                    }
+                    yPos++; // adds one to the yPos counter
+                }
+            }
+            livingCellStripStatusLabel1.Text = "Cells Alive = " + aliveCount; // updates alive count on status bar
+            updateX = universe.GetLength(0);
+            updateY = universe.GetLength(1);
+            graphicsPanel1.Invalidate();
+            reader.Close(); // closes the file
+        }
+
         #endregion
 
-        
+        private void ethanStanksToolStripMenuItem_Click(object sender, EventArgs e) // Custom Cell Save - Ethan Stanks
+        {
+            OpenCell("EthanStanks");
+        }
+
+        private void germToolStripMenuItem_Click(object sender, EventArgs e) // Custom Cell Save - Germ
+        {
+            OpenCell("Germ");
+        }
     }
 }

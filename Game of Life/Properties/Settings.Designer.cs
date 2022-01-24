@@ -25,7 +25,7 @@ namespace Game_of_Life.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
         public int ColorComboBoxIndex {
             get {
                 return ((int)(this["ColorComboBoxIndex"]));
@@ -49,7 +49,7 @@ namespace Game_of_Life.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Light Mode")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Dark Mode")]
         public string ColorComboBoxText {
             get {
                 return ((string)(this["ColorComboBoxText"]));

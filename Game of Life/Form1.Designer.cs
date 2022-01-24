@@ -73,7 +73,18 @@ namespace Game_of_Life
             this.clickEvent2ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.changeSizeToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.changeSpeedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.presetUniversesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ethanStanksToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.gliderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.oscillatorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.germToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.glassesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.gliderGunToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.growByOneToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.graphicsPanel1 = new Game_of_Life.GraphicsPanel();
+            this.toolStripStatusLabelSeed = new System.Windows.Forms.ToolStripStatusLabel();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -239,6 +250,8 @@ namespace Game_of_Life
             this.toolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.randomUniTimeToolStripMenuItem,
             this.raToolStripMenuItem,
+            this.presetUniversesToolStripMenuItem,
+            this.toolStripSeparator2,
             this.changeSizeToolStripMenuItem,
             this.generationSpeedToolStripMenuItem});
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
@@ -403,7 +416,8 @@ namespace Game_of_Life
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabelGenerations,
-            this.livingCellStripStatusLabel1});
+            this.livingCellStripStatusLabel1,
+            this.toolStripStatusLabelSeed});
             this.statusStrip1.Location = new System.Drawing.Point(0, 939);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(1484, 22);
@@ -460,6 +474,76 @@ namespace Game_of_Life
             this.changeSpeedToolStripMenuItem.Text = "Generation Speed";
             this.changeSpeedToolStripMenuItem.Click += new System.EventHandler(this.changeSpeedToolStripMenuItem_Click);
             // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(177, 6);
+            // 
+            // presetUniversesToolStripMenuItem
+            // 
+            this.presetUniversesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ethanStanksToolStripMenuItem,
+            this.germToolStripMenuItem,
+            this.glassesToolStripMenuItem,
+            this.gliderToolStripMenuItem,
+            this.gliderGunToolStripMenuItem,
+            this.growByOneToolStripMenuItem,
+            this.oscillatorToolStripMenuItem,
+            this.tToolStripMenuItem});
+            this.presetUniversesToolStripMenuItem.Name = "presetUniversesToolStripMenuItem";
+            this.presetUniversesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.presetUniversesToolStripMenuItem.Text = "Custom Universes";
+            // 
+            // ethanStanksToolStripMenuItem
+            // 
+            this.ethanStanksToolStripMenuItem.Name = "ethanStanksToolStripMenuItem";
+            this.ethanStanksToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.ethanStanksToolStripMenuItem.Text = "Ethan Stanks";
+            this.ethanStanksToolStripMenuItem.Click += new System.EventHandler(this.ethanStanksToolStripMenuItem_Click);
+            // 
+            // gliderToolStripMenuItem
+            // 
+            this.gliderToolStripMenuItem.Name = "gliderToolStripMenuItem";
+            this.gliderToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.gliderToolStripMenuItem.Text = "Glider";
+            // 
+            // oscillatorToolStripMenuItem
+            // 
+            this.oscillatorToolStripMenuItem.Name = "oscillatorToolStripMenuItem";
+            this.oscillatorToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.oscillatorToolStripMenuItem.Text = "Oscillator";
+            // 
+            // germToolStripMenuItem
+            // 
+            this.germToolStripMenuItem.Name = "germToolStripMenuItem";
+            this.germToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.germToolStripMenuItem.Text = "Germ";
+            this.germToolStripMenuItem.Click += new System.EventHandler(this.germToolStripMenuItem_Click);
+            // 
+            // glassesToolStripMenuItem
+            // 
+            this.glassesToolStripMenuItem.Name = "glassesToolStripMenuItem";
+            this.glassesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.glassesToolStripMenuItem.Text = "Glasses";
+            // 
+            // tToolStripMenuItem
+            // 
+            this.tToolStripMenuItem.Name = "tToolStripMenuItem";
+            this.tToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.tToolStripMenuItem.Text = "T";
+            // 
+            // gliderGunToolStripMenuItem
+            // 
+            this.gliderGunToolStripMenuItem.Name = "gliderGunToolStripMenuItem";
+            this.gliderGunToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.gliderGunToolStripMenuItem.Text = "Glider Gun";
+            // 
+            // growByOneToolStripMenuItem
+            // 
+            this.growByOneToolStripMenuItem.Name = "growByOneToolStripMenuItem";
+            this.growByOneToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.growByOneToolStripMenuItem.Text = "Grow-By-One";
+            // 
             // graphicsPanel1
             // 
             this.graphicsPanel1.BackColor = System.Drawing.Color.Silver;
@@ -471,6 +555,12 @@ namespace Game_of_Life
             this.graphicsPanel1.TabIndex = 3;
             this.graphicsPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.graphicsPanel1_Paint);
             this.graphicsPanel1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.graphicsPanel1_MouseClick);
+            // 
+            // toolStripStatusLabelSeed
+            // 
+            this.toolStripStatusLabelSeed.Name = "toolStripStatusLabelSeed";
+            this.toolStripStatusLabelSeed.Size = new System.Drawing.Size(44, 17);
+            this.toolStripStatusLabelSeed.Text = "Seed: 0";
             // 
             // Form1
             // 
@@ -544,6 +634,17 @@ namespace Game_of_Life
         private System.Windows.Forms.ToolStripMenuItem changeSizeToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem changeSpeedToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem importToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem presetUniversesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ethanStanksToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem gliderToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem oscillatorToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem germToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripMenuItem glassesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem gliderGunToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem growByOneToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem tToolStripMenuItem;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabelSeed;
     }
 }
 
