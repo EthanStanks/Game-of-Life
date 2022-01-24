@@ -336,8 +336,6 @@ namespace Game_of_Life
             NextGeneration();
         } // everytime the timer ticks
 
-
-
         private void graphicsPanel1_Paint(object sender, PaintEventArgs e)
         {
             // dont include Invalidate inside the Paint!!!!
@@ -1145,6 +1143,11 @@ namespace Game_of_Life
         private void germToolStripMenuItem_Click(object sender, EventArgs e) // Custom Cell Save - Germ
         {
             OpenCell("Germ");
+        }
+
+        private void glassesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenCell("Glasses");
         }
     }
 }

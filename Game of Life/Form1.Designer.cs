@@ -525,6 +525,7 @@ namespace Game_of_Life
             this.glassesToolStripMenuItem.Name = "glassesToolStripMenuItem";
             this.glassesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.glassesToolStripMenuItem.Text = "Glasses";
+            this.glassesToolStripMenuItem.Click += new System.EventHandler(this.glassesToolStripMenuItem_Click);
             // 
             // tToolStripMenuItem
             // 
