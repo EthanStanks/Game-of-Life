@@ -14,45 +14,45 @@ namespace Game_of_Life
     public partial class Form1 : Form
     {
         // The universe array
-        bool[,] universe = new bool[30, 30];
+        private bool[,] universe = new bool[30, 30];
 
         // Drawing colors
-        Color gridColor = Color.Black;
-        Color cellColor = Color.Gray;
+       private Color gridColor = Color.Black;
+        private Color cellColor = Color.Gray;
 
         // The Timer class
-        Timer timer = new Timer();
+        private Timer timer = new Timer();
 
         // Generation count
-        int generations = 0;
+        private int generations = 0;
 
         // Neighbor Bool - True if finite - False if Toroidal
-        bool isFinite = true;
+        private bool isFinite = true;
 
         // Show/Hide Grid Bool - True if show - False if hide
-        bool showGrid = true;
+        private bool showGrid = true;
 
         // Show/Hide Count Neighbor Bool - True if show - False if hide
-        bool showCount = true;
+       private bool showCount = true;
 
         // Show/Hide HUD Bool - True if show - False if hide
-        bool showHUD = true;
+        private bool showHUD = true;
 
         // Current Amount of Living Cells
-        int aliveCount = 0;
+        private int aliveCount = 0;
 
         // Time Variable
-        int miliTime = 100;
+        private int miliTime = 100;
 
         // Seed Variable
-        Int32 seed = 0;
+        private Int32 seed = 0;
 
         // File Name String
-        string FileName = string.Empty;
+        private string FileName = string.Empty;
 
         // X and Y variables for Universe for Settings
-        int updateX = 30;
-        int updateY = 30;
+        private int updateX = 30;
+        private int updateY = 30;
 
 
 
@@ -152,6 +152,8 @@ namespace Game_of_Life
         }
         #endregion
 
+        #region Universe Methods
+
         private void UpdateUniSize(int x, int y)
         {
             bool[,] updateUni = new bool[x, y];
@@ -176,6 +178,8 @@ namespace Game_of_Life
 
             graphicsPanel1.Invalidate();
         }
+
+        #endregion
 
         #region Count Methods
         private int CountNeighborFinite(int x, int y)
@@ -328,6 +332,8 @@ namespace Game_of_Life
             NextGeneration();
         } // everytime the timer ticks
 
+        
+
         private void graphicsPanel1_Paint(object sender, PaintEventArgs e)
         {
             // dont include Invalidate inside the Paint!!!!
@@ -364,6 +370,9 @@ namespace Game_of_Life
                         e.Graphics.FillRectangle(cellBrush, cellRect);
                     }
 
+                    // Outline the cell with a pen
+                    if (showGrid == true) e.Graphics.DrawRectangle(gridPen, cellRect.X, cellRect.Y, cellRect.Width, cellRect.Height);
+
                     // Show Neighbor Count if True
                     if (showCount == true)
                     {
@@ -386,9 +395,24 @@ namespace Game_of_Life
 
                     }
 
-                    // Outline the cell with a pen
-                    if (showGrid == true) e.Graphics.DrawRectangle(gridPen, cellRect.X, cellRect.Y, cellRect.Width, cellRect.Height);
+                }
+            } // end of for loop
 
+            if (showHUD == true)
+            {
+                Font font = new Font("Segoe UI", 16f);
+                StringFormat stringFormat = new StringFormat();
+                stringFormat.Alignment = StringAlignment.Near;
+                stringFormat.LineAlignment = StringAlignment.Far;
+
+                string HUD = "Generations: " + generations + "\nCell Count: " + aliveCount + "\nBoundary Type: " + CountNeighborsComboBox.Text + "\nUniverse Size: [" + universe.GetLength(0) + "," + universe.GetLength(1) + "]";
+                if (ColorComboBox.Text == "Light Mode" || ColorComboBox.Text == "Turtle Mode")
+                {
+                    e.Graphics.DrawString(HUD, font, Brushes.Black, graphicsPanel1.ClientRectangle, stringFormat);
+                }
+                else
+                {
+                    e.Graphics.DrawString(HUD, font, Brushes.White, graphicsPanel1.ClientRectangle, stringFormat);
                 }
             }
 
@@ -704,10 +728,12 @@ namespace Game_of_Life
             if (CountNeighborsComboBox.Text == "Finite")
             {
                 isFinite = true;
+                graphicsPanel1.Invalidate();
             }
             else if (CountNeighborsComboBox.Text == "Toroidal")
             {
                 isFinite = false;
+                graphicsPanel1.Invalidate();
             }
         } // Count Neighbors Combo Box
         #endregion
