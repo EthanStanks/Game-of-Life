@@ -382,22 +382,16 @@ namespace Game_of_Life
                         StringFormat stringFormat = new StringFormat();
                         stringFormat.Alignment = StringAlignment.Center;
                         stringFormat.LineAlignment = StringAlignment.Center;
-                        if (ColorComboBox.Text == "Light Mode" || ColorComboBox.Text == "Turtle Mode")
-                        {
-                            if (universe[x, y] == true) e.Graphics.DrawString(count.ToString(), font, Brushes.Black, cellRect, stringFormat);
-                            else if (count > 0) e.Graphics.DrawString(count.ToString(), font, Brushes.Black, cellRect, stringFormat);
-                        }
-                        else
-                        {
-                            if (universe[x, y] == true) e.Graphics.DrawString(count.ToString(), font, Brushes.White, cellRect, stringFormat);
-                            else if (count > 0) e.Graphics.DrawString(count.ToString(), font, Brushes.White, cellRect, stringFormat);
-                        }
+
+                        if (universe[x, y] == true) e.Graphics.DrawString(count.ToString(), font, Brushes.MistyRose, cellRect, stringFormat);
+                        else if (count > 0) e.Graphics.DrawString(count.ToString(), font, Brushes.MistyRose, cellRect, stringFormat);
 
                     }
 
                 }
             } // end of for loop
 
+            // If Show HUD is true
             if (showHUD == true)
             {
                 Font font = new Font("Segoe UI", 16f);
@@ -625,9 +619,9 @@ namespace Game_of_Life
                 statusStrip1.BackColor = Color.White; // Status Strip Background
                 statusStrip1.ForeColor = Color.Black; // Status Strip Text
 
-                graphicsPanel1.BackColor = Color.White; // Dead Cells
+                graphicsPanel1.BackColor = Color.Silver; // Dead Cells
                 gridColor = Color.Black; // Grid Lines
-                cellColor = Color.Gray; // Dead Cells
+                cellColor = Color.DarkGray; // Alive Cells
                 graphicsPanel1.Invalidate();
             }
             else if (ColorComboBox.Text == "Dark Mode")

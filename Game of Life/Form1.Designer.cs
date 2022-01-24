@@ -185,14 +185,14 @@ namespace Game_of_Life
             // reloadToolStripMenuItem
             // 
             this.reloadToolStripMenuItem.Name = "reloadToolStripMenuItem";
-            this.reloadToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.reloadToolStripMenuItem.Size = new System.Drawing.Size(110, 22);
             this.reloadToolStripMenuItem.Text = "&Reload";
             this.reloadToolStripMenuItem.Click += new System.EventHandler(this.reloadToolStripMenuItem_Click);
             // 
             // resetToolStripMenuItem
             // 
             this.resetToolStripMenuItem.Name = "resetToolStripMenuItem";
-            this.resetToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.resetToolStripMenuItem.Size = new System.Drawing.Size(110, 22);
             this.resetToolStripMenuItem.Text = "&Reset";
             this.resetToolStripMenuItem.Click += new System.EventHandler(this.resetToolStripMenuItem_Click);
             // 
@@ -209,14 +209,14 @@ namespace Game_of_Life
             // hideGridToolStripMenuItem
             // 
             this.hideGridToolStripMenuItem.Name = "hideGridToolStripMenuItem";
-            this.hideGridToolStripMenuItem.Size = new System.Drawing.Size(194, 22);
+            this.hideGridToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
             this.hideGridToolStripMenuItem.Text = "Hide Grid";
             this.hideGridToolStripMenuItem.Click += new System.EventHandler(this.hideGridToolStripMenuItem_Click);
             // 
             // hideNeighborCountToolStripMenuItem
             // 
             this.hideNeighborCountToolStripMenuItem.Name = "hideNeighborCountToolStripMenuItem";
-            this.hideNeighborCountToolStripMenuItem.Size = new System.Drawing.Size(194, 22);
+            this.hideNeighborCountToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
             this.hideNeighborCountToolStripMenuItem.Text = "Hide Neighbor Count";
             this.hideNeighborCountToolStripMenuItem.Click += new System.EventHandler(this.hideNeighborCountToolStripMenuItem_Click);
             // 
@@ -455,7 +455,7 @@ namespace Game_of_Life
             // 
             // graphicsPanel1
             // 
-            this.graphicsPanel1.BackColor = System.Drawing.SystemColors.Window;
+            this.graphicsPanel1.BackColor = System.Drawing.Color.Silver;
             this.graphicsPanel1.ContextMenuStrip = this.contextMenuStrip1;
             this.graphicsPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.graphicsPanel1.Location = new System.Drawing.Point(0, 52);
