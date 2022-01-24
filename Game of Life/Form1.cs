@@ -35,6 +35,9 @@ namespace Game_of_Life
         // Show/Hide Count Neighbor Bool - True if show - False if hide
         bool showCount = true;
 
+        // Show/Hide HUD Bool - True if show - False if hide
+        bool showHUD = true;
+
         // Current Amount of Living Cells
         int aliveCount = 0;
 
@@ -47,6 +50,9 @@ namespace Game_of_Life
         // File Name String
         string FileName = string.Empty;
 
+        // X and Y variables for Universe for Settings
+        int updateX = 30;
+        int updateY = 30;
 
 
 
@@ -60,19 +66,7 @@ namespace Game_of_Life
             CountNeighborsComboBox.SelectedIndex = 0;
 
             // Reading the Properties
-            ColorComboBox.SelectedIndex = Properties.Settings.Default.ColorComboBoxIndex; // Sets the Color Combo Box Index to the saved index
-            ColorComboBox.Text = Properties.Settings.Default.ColorComboBoxText; // Sets the Color Combo Box Text to the saved text
-            graphicsPanel1.Invalidate();
-            miliTime = Properties.Settings.Default.MiliTime; // Sets the Generation Speed to the saved speed
-            CountNeighborsComboBox.SelectedIndex = Properties.Settings.Default.CountComboBoxIndex; // Sets the CountNeighbors Combo Box Index to the saved index
-            CountNeighborsComboBox.Text = Properties.Settings.Default.CountComboBoxText; // Sets the CountNeighbors Combo Box Text to the saved text
-            isFinite = Properties.Settings.Default.IsFinite; // Sets isFinite to the saved bool value
-            showCount = Properties.Settings.Default.ShowCount; // Sets showCount to the saved bool value
-            hideNeighborCountToolStripMenuItem.Text = Properties.Settings.Default.HideCountText; // Sets the Hide Count button text
-            showGrid = Properties.Settings.Default.ShowGrid; // Sets showGrid to the saved bool value
-            hideGridToolStripMenuItem.Text = Properties.Settings.Default.HideGridText; // Sets the Hide Grid button text
-
-
+            ReadProperties();
 
             // Setup the timer
             timer.Interval = miliTime; // milliseconds
@@ -114,6 +108,57 @@ namespace Game_of_Life
         }
         #endregion
 
+        #region Properties Settings Methods
+        private void ReadProperties()
+        {
+            ColorComboBox.SelectedIndex = Properties.Settings.Default.ColorComboBoxIndex; // Sets the Color Combo Box Index to the saved index
+            ColorComboBox.Text = Properties.Settings.Default.ColorComboBoxText; // Sets the Color Combo Box Text to the saved text
+            miliTime = Properties.Settings.Default.MiliTime; // Sets the Generation Speed to the saved speed
+            CountNeighborsComboBox.SelectedIndex = Properties.Settings.Default.CountComboBoxIndex; // Sets the CountNeighbors Combo Box Index to the saved index
+            CountNeighborsComboBox.Text = Properties.Settings.Default.CountComboBoxText; // Sets the CountNeighbors Combo Box Text to the saved text
+            isFinite = Properties.Settings.Default.IsFinite; // Sets isFinite to the saved bool value
+            showCount = Properties.Settings.Default.ShowCount; // Sets showCount to the saved bool value
+            hideNeighborCountToolStripMenuItem.Text = Properties.Settings.Default.HideCountText; // Sets the Hide Count button text
+            showGrid = Properties.Settings.Default.ShowGrid; // Sets showGrid to the saved bool value
+            hideGridToolStripMenuItem.Text = Properties.Settings.Default.HideGridText; // Sets the Hide Grid button text
+            showHUD = Properties.Settings.Default.ShowHud; // Sets the showHUD to the saved bool value
+            hideHeadsUpDisplayToolStripMenuItem.Text = Properties.Settings.Default.HideHudText; // Sets the Hide Hud button text
+
+            updateX = Properties.Settings.Default.X; // Sets the X of the universe to the saved default
+            updateY = Properties.Settings.Default.Y; // Sets the Y of the universe to the saved default
+            UpdateUniSize(updateX, updateY);
+            graphicsPanel1.Invalidate();
+        }
+        private void UpdateProperties()
+        {
+            Properties.Settings.Default.ColorComboBoxIndex = ColorComboBox.SelectedIndex; // Saves the Color Combo Box Index
+            Properties.Settings.Default.ColorComboBoxText = ColorComboBox.Text; // Saves the Color Combo Box Text
+            Properties.Settings.Default.MiliTime = miliTime; // Saves the Generation Speed
+
+            Properties.Settings.Default.CountComboBoxIndex = CountNeighborsComboBox.SelectedIndex; // Saves the CountNeighbors Combo Box Index
+            Properties.Settings.Default.CountComboBoxText = CountNeighborsComboBox.Text; // Saves the CountNeighbors Combo Box Text
+            Properties.Settings.Default.IsFinite = isFinite; // Saves isFinite value
+            Properties.Settings.Default.ShowCount = showCount; // Saves showCount value
+            Properties.Settings.Default.ShowGrid = showGrid; // Saves showGrid value
+
+            Properties.Settings.Default.HideGridText = hideGridToolStripMenuItem.Text; // Saves the Hide Grid button text
+            Properties.Settings.Default.HideCountText = hideNeighborCountToolStripMenuItem.Text; // Saves the Hide Count button text
+
+            Properties.Settings.Default.X = updateX;
+            Properties.Settings.Default.Y = updateY;
+
+            Properties.Settings.Default.ShowHud = showHUD; // Saves the showHUD bool
+            Properties.Settings.Default.HideHudText = hideHeadsUpDisplayToolStripMenuItem.Text; // Sabes the Hide HUD button text
+        }
+        #endregion
+
+        private void UpdateUniSize(int x, int y)
+        {
+            bool[,] updateUni = new bool[x, y];
+            bool[,] temp = universe;
+            universe = updateUni;
+            updateUni = temp;
+        }
         private void ClearUniverse()
         {
             generations = 0; // resets generation count to 0
@@ -179,7 +224,7 @@ namespace Game_of_Life
                     // if yCheck is less than 0 then set to yLen - 1
                     // if xCheck is greater than or equal too xLen then set to 0
                     // if yCheck is greater than or equal too yLen then set to 0
-                    if (xOffset == 0 & yOffset == 0) continue;
+                    if (xOffset == 0 && yOffset == 0) continue;
 
                     if (xCheck < 0) xCheck = xLen - 1;
 
@@ -461,12 +506,11 @@ namespace Game_of_Life
             if (DialogResult.OK == uniSize.ShowDialog())
             {
                 int x = uniSize.X; // sets x to DialogForm x
+                updateX = uniSize.X;
                 int y = uniSize.Y; // sets y to DialogForm y
+                updateY = uniSize.Y;
                 // resizes the universe array
-                bool[,] newUni = new bool[x, y];
-                bool[,] temp = universe;
-                universe = newUni;
-                newUni = temp;
+                UpdateUniSize(x, y);
                 graphicsPanel1.Invalidate();
             }
         }
@@ -520,6 +564,22 @@ namespace Game_of_Life
             graphicsPanel1.Invalidate();
 
         } // Hide Neighbor Count
+
+        private void hideHeadsUpDisplayToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // hiding HUD
+            if (hideHeadsUpDisplayToolStripMenuItem.Text == "Hide HUD")
+            {
+                hideHeadsUpDisplayToolStripMenuItem.Text = "Show HUD";
+                showHUD = false;
+            }
+            else // showing HUD
+            {
+                hideHeadsUpDisplayToolStripMenuItem.Text = "Hide HUD";
+                showHUD = true;
+            }
+            graphicsPanel1.Invalidate();
+        } // Hide HUD
 
         #endregion // Region of Click Functions
 
@@ -703,18 +763,7 @@ namespace Game_of_Life
         private void Form1_FormClosed(object sender, FormClosedEventArgs e) // when the form is closed
         {
             // Updating the Properties
-            Properties.Settings.Default.ColorComboBoxIndex = ColorComboBox.SelectedIndex; // Saves the Color Combo Box Index
-            Properties.Settings.Default.ColorComboBoxText = ColorComboBox.Text; // Saves the Color Combo Box Text
-            Properties.Settings.Default.MiliTime = miliTime; // Saves the Generation Speed
-
-            Properties.Settings.Default.CountComboBoxIndex = CountNeighborsComboBox.SelectedIndex; // Saves the CountNeighbors Combo Box Index
-            Properties.Settings.Default.CountComboBoxText = CountNeighborsComboBox.Text; // Saves the CountNeighbors Combo Box Text
-            Properties.Settings.Default.IsFinite = isFinite; // Saves isFinite value
-            Properties.Settings.Default.ShowCount = showCount; // Saves showCount value
-            Properties.Settings.Default.ShowGrid = showGrid; // Saves showGrid value
-
-            Properties.Settings.Default.HideGridText = hideGridToolStripMenuItem.Text; // Saves the Hide Grid button text
-            Properties.Settings.Default.HideCountText = hideNeighborCountToolStripMenuItem.Text; // Saves the Hide Count button text
+            UpdateProperties();
 
             // Saves the Update
             Properties.Settings.Default.Save();
@@ -725,17 +774,7 @@ namespace Game_of_Life
             Properties.Settings.Default.Reset();
 
             // Reading the Properties
-            ColorComboBox.SelectedIndex = Properties.Settings.Default.ColorComboBoxIndex; // Sets the Color Combo Box Index to the saved index
-            ColorComboBox.Text = Properties.Settings.Default.ColorComboBoxText; // Sets the Color Combo Box Text to the saved text
-            graphicsPanel1.Invalidate();
-            miliTime = Properties.Settings.Default.MiliTime; // Sets the Generation Speed to the saved speed
-            CountNeighborsComboBox.SelectedIndex = Properties.Settings.Default.CountComboBoxIndex; // Sets the CountNeighbors Combo Box Index to the saved index
-            CountNeighborsComboBox.Text = Properties.Settings.Default.CountComboBoxText; // Sets the CountNeighbors Combo Box Text to the saved text
-            isFinite = Properties.Settings.Default.IsFinite; // Sets isFinite to the saved bool value
-            showCount = Properties.Settings.Default.ShowCount; // Sets showCount to the saved bool value
-            hideNeighborCountToolStripMenuItem.Text = Properties.Settings.Default.HideCountText; // Sets Hide Count button text
-            showGrid = Properties.Settings.Default.ShowGrid; // Sets showGrid to the saved bool value
-            hideGridToolStripMenuItem.Text = Properties.Settings.Default.HideGridText; // Sets the Hide Grid button text
+            ReadProperties();
         }
 
         private void reloadToolStripMenuItem_Click(object sender, EventArgs e) // Reload Click Event
@@ -743,18 +782,7 @@ namespace Game_of_Life
             Properties.Settings.Default.Reload();
 
             // Reading the Properties
-            // Colors
-            ColorComboBox.SelectedIndex = Properties.Settings.Default.ColorComboBoxIndex; // Sets the Color Combo Box Index to the saved index
-            ColorComboBox.Text = Properties.Settings.Default.ColorComboBoxText; // Sets the Color Combo Box Text to the saved text
-            graphicsPanel1.Invalidate();
-            miliTime = Properties.Settings.Default.MiliTime; // Sets the Generation Speed to the saved speed
-            CountNeighborsComboBox.SelectedIndex = Properties.Settings.Default.CountComboBoxIndex; // Sets the CountNeighbors Combo Box Index to the saved index
-            CountNeighborsComboBox.Text = Properties.Settings.Default.CountComboBoxText; // Sets the CountNeighbors Combo Box Text to the saved text
-            isFinite = Properties.Settings.Default.IsFinite; // Sets isFinite to the saved bool value
-            showCount = Properties.Settings.Default.ShowCount; // Sets showCount to the saved bool value
-            hideNeighborCountToolStripMenuItem.Text = Properties.Settings.Default.HideCountText; // Sets the Hide Count button text
-            showGrid = Properties.Settings.Default.ShowGrid; // Sets showGrid to the saved bool value
-            hideGridToolStripMenuItem.Text = Properties.Settings.Default.HideGridText; // Sets the Hide Grid button text
+            ReadProperties();
 
         }
         #endregion
@@ -895,6 +923,8 @@ namespace Game_of_Life
                 }
                 FileName = dlg.FileName; // sets the FileName variable to the opened name
                 livingCellStripStatusLabel1.Text = "Cells Alive = " + aliveCount; // updates alive count on status bar
+                updateX = universe.GetLength(0);
+                updateY = universe.GetLength(1);
                 graphicsPanel1.Invalidate();
                 reader.Close(); // closes the file
             }
@@ -1004,6 +1034,8 @@ namespace Game_of_Life
 
                 FileName = dlg.FileName; // sets the FileName variable to the opened name
                 livingCellStripStatusLabel1.Text = "Cells Alive = " + aliveCount; // updates alive count on status bar
+                universe.GetLength(0);
+                universe.GetLength(1);
                 graphicsPanel1.Invalidate();
                 reader.Close(); // closes the file
 
@@ -1011,5 +1043,7 @@ namespace Game_of_Life
             }
         } // Importing Function
         #endregion
+
+        
     }
 }

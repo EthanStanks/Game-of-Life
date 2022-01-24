@@ -32,5 +32,17 @@
     <Setting Name="HideCountText" Type="System.String" Scope="User">
       <Value Profile="(Default)">Hide Neighbor Count</Value>
     </Setting>
+    <Setting Name="X" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">30</Value>
+    </Setting>
+    <Setting Name="Y" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">30</Value>
+    </Setting>
+    <Setting Name="ShowHud" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="HideHudText" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Hide HUD</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
