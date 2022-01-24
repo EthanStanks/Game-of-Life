@@ -1078,7 +1078,7 @@ namespace Game_of_Life
                     universe[w, h] = false;
                 }
             }
-            StreamReader reader = new StreamReader(@""+cellName + ".cells");
+            StreamReader reader = new StreamReader(@"Resources\" + cellName + ".cells");
             aliveCount = 0; // resets aliveCount
             int maxWidth = 0; // width of the data in the file
             int maxHeight = 0; // height of the data in the file
