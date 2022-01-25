@@ -159,7 +159,21 @@
     <None Include="Resources\Exit_16x.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\Timer_16x.png" />
+    <None Include="Resources\InkPresenter_16x.png" />
+    <None Include="Resources\Time_16x.png" />
+    <None Include="Resources\StatusInformation_16x.png" />
+    <None Include="Resources\Counter_16x.png" />
+    <None Include="Resources\EditInput_16x.png" />
+    <None Include="Resources\EditLink_16x.png" />
+    <None Include="Resources\FillOpacity_16x.png" />
     <Content Include="Resources\GameOfLifeIcon.png" />
+    <None Include="Resources\GridPane_16x.png" />
+    <None Include="Resources\Grid_16x.png" />
+    <Content Include="Resources\ImportFile_16x.png" />
+    <None Include="Resources\ProcedureMissing_16x.png" />
+    <None Include="Resources\ProcedureSettings_16x.png" />
+    <None Include="Resources\ImportFile_16x1.png" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

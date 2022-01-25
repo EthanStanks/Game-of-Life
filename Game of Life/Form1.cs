@@ -888,6 +888,9 @@ namespace Game_of_Life
 
             if (DialogResult.OK == dlg.ShowDialog())
             {
+                timer.Enabled = false;
+                generations = 0;
+
                 for (int h = 0; h < universe.GetLength(1); h++)
                 {
                     // Iterate through the universe in the x, left to right
@@ -960,6 +963,9 @@ namespace Game_of_Life
 
             if (DialogResult.OK == dlg.ShowDialog())
             {
+                timer.Enabled = false;
+                generations = 0;
+
                 for (int h = 0; h < universe.GetLength(1); h++)
                 {
                     // Iterate through the universe in the x, left to right
@@ -1070,6 +1076,9 @@ namespace Game_of_Life
         {
             // This will open a saved cell file that is in the debug folder
 
+            timer.Enabled = false;
+            generations = 0;
+
             for (int h = 0; h < universe.GetLength(1); h++)
             {
                 // Iterate through the universe in the x, left to right
@@ -1135,6 +1144,8 @@ namespace Game_of_Life
 
         #endregion
 
+        #region Saved Cells
+
         private void ethanStanksToolStripMenuItem_Click(object sender, EventArgs e) // Custom Cell Save - Ethan Stanks
         {
             OpenCell("EthanStanks");
@@ -1179,5 +1190,6 @@ namespace Game_of_Life
         {
             OpenCell("GardenOfEden");
         }
+        #endregion
     }
 }

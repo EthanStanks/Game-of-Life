@@ -63,6 +63,36 @@ namespace Game_of_Life.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Counter_16x {
+            get {
+                object obj = ResourceManager.GetObject("Counter_16x", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap EditInput_16x {
+            get {
+                object obj = ResourceManager.GetObject("EditInput_16x", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap EditLink_16x {
+            get {
+                object obj = ResourceManager.GetObject("EditLink_16x", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Exit_16x {
             get {
                 object obj = ResourceManager.GetObject("Exit_16x", resourceCulture);
@@ -76,6 +106,56 @@ namespace Game_of_Life.Properties {
         internal static System.Drawing.Bitmap FeedbackSmile_16x {
             get {
                 object obj = ResourceManager.GetObject("FeedbackSmile_16x", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap FillOpacity_16x {
+            get {
+                object obj = ResourceManager.GetObject("FillOpacity_16x", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Grid_16x {
+            get {
+                object obj = ResourceManager.GetObject("Grid_16x", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap GridPane_16x {
+            get {
+                object obj = ResourceManager.GetObject("GridPane_16x", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap ImportFile_16x {
+            get {
+                object obj = ResourceManager.GetObject("ImportFile_16x", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap InkPresenter_16x {
+            get {
+                object obj = ResourceManager.GetObject("InkPresenter_16x", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -103,6 +183,26 @@ namespace Game_of_Life.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap ProcedureMissing_16x {
+            get {
+                object obj = ResourceManager.GetObject("ProcedureMissing_16x", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap ProcedureSettings_16x {
+            get {
+                object obj = ResourceManager.GetObject("ProcedureSettings_16x", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Run_16x {
             get {
                 object obj = ResourceManager.GetObject("Run_16x", resourceCulture);
@@ -116,6 +216,36 @@ namespace Game_of_Life.Properties {
         internal static System.Drawing.Bitmap SaveAs_16x {
             get {
                 object obj = ResourceManager.GetObject("SaveAs_16x", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap StatusInformation_16x {
+            get {
+                object obj = ResourceManager.GetObject("StatusInformation_16x", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Time_16x {
+            get {
+                object obj = ResourceManager.GetObject("Time_16x", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Timer_16x {
+            get {
+                object obj = ResourceManager.GetObject("Timer_16x", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

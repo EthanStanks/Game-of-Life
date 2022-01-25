@@ -118,14 +118,14 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="Exit_16x" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Exit_16x.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="FeedbackSmile_16x" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\FeedbackSmile_16x.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="SaveAs_16x" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\SaveAs_16x.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Next_16x" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Next_16x.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Exit_16x" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Exit_16x.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Pause_16x" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Pause_16x.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -133,7 +133,46 @@
   <data name="Run_16x" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Run_16x.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="SaveAs_16x" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\SaveAs_16x.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="FeedbackSmile_16x" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\FeedbackSmile_16x.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ImportFile_16x" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ImportFile_16x1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Counter_16x" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Counter_16x.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="EditInput_16x" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\EditInput_16x.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="EditLink_16x" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\EditLink_16x.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="FillOpacity_16x" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\FillOpacity_16x.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="GridPane_16x" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\GridPane_16x.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Grid_16x" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Grid_16x.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="InkPresenter_16x" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\InkPresenter_16x.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ProcedureMissing_16x" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ProcedureMissing_16x.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ProcedureSettings_16x" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ProcedureSettings_16x.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="StatusInformation_16x" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\StatusInformation_16x.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Timer_16x" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Timer_16x.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Time_16x" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Time_16x.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>
