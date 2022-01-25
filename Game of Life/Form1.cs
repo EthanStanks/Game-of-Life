@@ -1145,9 +1145,39 @@ namespace Game_of_Life
             OpenCell("Germ");
         }
 
-        private void glassesToolStripMenuItem_Click(object sender, EventArgs e)
+        private void glassesToolStripMenuItem_Click(object sender, EventArgs e) // Custom Cell Save - Glasses
         {
             OpenCell("Glasses");
+        }
+
+        private void gliderToolStripMenuItem_Click(object sender, EventArgs e) // Custom Cell Save - Glider
+        {
+            OpenCell("Glider");
+        }
+
+        private void gliderGunToolStripMenuItem_Click(object sender, EventArgs e) // Custom Cell Save - Glider Gun
+        {
+            OpenCell("Glider Gun");
+        }
+
+        private void growByOneToolStripMenuItem_Click(object sender, EventArgs e) // Custom Cell Save - Grow-By-One
+        {
+            OpenCell("GrowByOne");
+        }
+
+        private void oscillatorToolStripMenuItem_Click(object sender, EventArgs e) // Custom Cell Save - Oscillator
+        {
+            OpenCell("Oscillator");
+        }
+
+        private void tToolStripMenuItem_Click(object sender, EventArgs e) // Custom Cell Save - T
+        {
+            OpenCell("T");
+        }
+
+        private void gardenOfEdenToolStripMenuItem_Click(object sender, EventArgs e) // Custom Cell Save - Garden of Eden
+        {
+            OpenCell("GardenOfEden");
         }
     }
 }
